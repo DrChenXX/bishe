@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bishe.dao.NoticeDao">
+
+    <select id="getAll" resultType="com.example.bishe.entity.NoticeEntity">
+        select * from notice
+    </select>
+
+    <insert id="add" parameterType="com.example.bishe.entity.NoticeEntity">
+        insert into notice(id, type, target, content) VALUES (#{id},#{type},#{target},#{content})
+    </insert>
+
+    <update id="update">
+        update notice set type = #{target}, content = #{content} where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from notice where id = #{id}
+    </delete>
+
+</mapper>

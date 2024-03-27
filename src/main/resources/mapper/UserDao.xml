@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bishe.dao.UserDao">
+
+    <select id="getAll" resultType="com.example.bishe.entity.UserEntity">
+        select * from user
+    </select>
+
+    <insert id="add" parameterType="com.example.bishe.entity.UserEntity">
+        insert into user(id, password, type, phone) values (#{id},#{password},#{type},#{phone})
+    </insert>
+
+    <update id="update">
+        update user set password = #{password}, type = #{type}, phone = #{phone} where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from user where id = #{id}
+    </delete>
+
+</mapper>

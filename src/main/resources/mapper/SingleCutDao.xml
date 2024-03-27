@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bishe.dao.SingleCutDao">
+
+    <select id="getAll" resultType="com.example.bishe.entity.SingleCutEntity">
+        select * from single_cut
+    </select>
+
+    <insert id="add" parameterType="com.example.bishe.entity.SingleCutEntity">
+        insert into single_cut(id, worker_id, work_id, pic1_id, pic2_id, pic3_id, number, state, note) VALUES (#{id},#{workerId},#{workId},#{pic1Id},#{pic2Id},#{pic3Id},#{number},#{state},#{note})
+    </insert>
+
+    <update id="update">
+        update single_cut set worker_id = #{workerId}, work_id = #{workId}, pic1_id = #{pic1Id}, pic2_id = #{pic2Id}, pic3_id = #{pic3Id}, number = #{number}, state = #{state}, note = #{note} where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from single_cut where id = #{id}
+    </delete>
+
+</mapper>

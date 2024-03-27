@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bishe.dao.WorkDao">
+
+    <select id="getAll" resultType="com.example.bishe.entity.WorkEntity">
+        select * from work
+    </select>
+
+    <insert id="add" parameterType="com.example.bishe.entity.WorkEntity">
+        insert into work(id, worker_id, task_id, type, number, nownum, deadline, submit) VALUES (#{id},#{workerId},#{taskId},#{type},#{number},#{nownum},#{deadline},#{submit})
+    </insert>
+
+    <update id="update">
+        update work set worker_id = #{workerId}, task_id = #{taskId}, type = #{type}, number = #{number}, nownum = #{nownum}, deadline = #{deadline}, submit = #{submit} where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from work where id = #{id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bishe.dao.FarmDao">
+
+    <select id="getAll" resultType="com.example.bishe.entity.FarmEntity">
+        select * from farm
+    </select>
+
+    <insert id="add" parameterType="com.example.bishe.entity.FarmEntity">
+        insert into farm(id, name, admin_id) VALUES (#{id},#{name},#{adminId})
+    </insert>
+
+    <update id="update">
+        update farm set name = #{name}, admin_id = #{adminId} where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from farm where id = #{id}
+    </delete>
+
+</mapper>
