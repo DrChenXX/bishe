@@ -5,39 +5,30 @@ import com.aliyun.oss.OSS;
 import com.aliyun.oss.common.auth.*;
 import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.OSSException;
-import com.aliyun.oss.model.PutObjectRequest;
-import com.aliyun.oss.model.PutObjectResult;
-import java.io.FileInputStream;
-import java.io.InputStream;
+import com.aliyun.oss.model.GetObjectRequest;
+import java.io.File;
 
-public class BisheUploadTest {
+public class BisheDownloadTest {
 
     public static void main(String[] args) throws Exception {
         // Endpoint以华东1（杭州）为例，其它Region请按实际情况填写。
         String endpoint = "https://oss-cn-nanjing.aliyuncs.com";
-        // 从环境变量中获取RAM用户的访问密钥（AccessKey ID和AccessKey Secret）。
-        // 从环境变量中获取RAM用户的访问密钥（AccessKey ID和AccessKey Secret）。
-        String accessKeyId = System.getenv("OSS_ACCESS_KEY_ID");
-        String accessKeySecret = System.getenv("OSS_ACCESS_KEY_SECRET");
-        // 使用代码嵌入的RAM用户的访问密钥配置访问凭证。
-        CredentialsProvider credentialsProvider = new DefaultCredentialProvider(accessKeyId, accessKeySecret);
+        //从环境变量中获取访问凭证。运行本代码示例之前，请确保已设置环境变量OSS_ACCESS_KEY_ID和OSS_ACCESS_KEY_SECRET。
+        EnvironmentVariableCredentialsProvider credentialsProvider = CredentialsProviderFactory.newEnvironmentVariableCredentialsProvider();
         // 填写Bucket名称，例如examplebucket。
         String bucketName = "cxy-bishe";
-        // 填写Object完整路径，例如exampledir/exampleobject.txt。Object完整路径中不能包含Bucket名称。
+        // 填写不包含Bucket名称在内的Object完整路径，例如testfolder/exampleobject.txt。
         String objectName = "pic/2023_12_01 10_24_05 晴 7°C.jpg";
-        // 填写本地文件的完整路径，例如D:\\localpath\\examplefile.txt。
-        // 如果未指定本地路径，则默认从示例程序所属项目对应本地路径中上传文件流。
-        String filePath= "C:\\Users\\30648\\Desktop\\陈\\work\\2023_12_01 10_24_05 晴 7°C.jpg";
+        // 填写Object下载到本地的完整路径。
+        String pathName = "C:\\Users\\30648\\Desktop\\2023_12_01 10_24_05 晴 7°C.jpg";
 
         // 创建OSSClient实例。
         OSS ossClient = new OSSClientBuilder().build(endpoint, credentialsProvider);
 
         try {
-            InputStream inputStream = new FileInputStream(filePath);
-            // 创建PutObjectRequest对象。
-            PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, objectName, inputStream);
-            // 创建PutObject请求。
-            PutObjectResult result = ossClient.putObject(putObjectRequest);
+            // 下载Object到本地文件，并保存到指定的本地路径中。如果指定的本地文件存在会覆盖，不存在则新建。
+            // 如果未指定本地路径，则下载后的文件默认保存到示例程序所属项目对应本地路径中。
+            ossClient.getObject(new GetObjectRequest(bucketName, objectName), new File(pathName));
         } catch (OSSException oe) {
             System.out.println("Caught an OSSException, which means your request made it to OSS, "
                     + "but was rejected with an error response for some reason.");
