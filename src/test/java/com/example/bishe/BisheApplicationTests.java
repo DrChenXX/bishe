@@ -3,13 +3,18 @@ package com.example.bishe;
 import com.example.bishe.dao.FarmDao;
 import com.example.bishe.dao.UserDao;
 import com.example.bishe.entity.FarmEntity;
+import com.example.bishe.entity.TaskEntity;
 import com.example.bishe.entity.UserEntity;
+import com.example.bishe.service.TaskService;
+import com.example.bishe.service.UserService;
+import com.example.bishe.service.impl.TaskServiceImpl;
 import com.example.bishe.util.MybatisUtil;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -20,13 +25,24 @@ import java.util.List;
 @SpringBootTest
 class BisheApplicationTests {
 
+    @Autowired
+    UserService userService;
+
+    @Autowired
+    TaskService taskService;
+
     @Test
     public void testUser(){
-        SqlSession session = MybatisUtil.getSqlSession();
-        UserDao userDao = session.getMapper(UserDao.class);
-        List<UserEntity> userEntityList = userDao.getAll();
+        UserEntity user = new UserEntity();
+        List<UserEntity> userEntityList = userService.search(user);
         userEntityList.forEach(userEntity -> System.out.println(userEntity.toString()));
-        MybatisUtil.close();
+    }
+
+    @Test
+    public void testTask(){
+        TaskEntity task = new TaskEntity();
+        List<TaskEntity> taskEntityList = taskService.search(task);
+        taskEntityList.forEach(taskEntity -> System.out.println(taskEntity.toString()));
     }
 
     @Test

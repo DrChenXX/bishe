@@ -1,11 +1,13 @@
 package com.example.bishe.dao;
 
 import com.example.bishe.entity.UserEntity;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+@Mapper
 public interface UserDao {
-    List<UserEntity> getAll();
+    List<UserEntity> searchByCondition(UserEntity user);
 
     boolean add(UserEntity user);
 

@@ -11,4 +11,11 @@ public class UserEntity {
     private String type;
 
     private String phone;
+
+    public UserEntity() {
+        id = 0;
+        password = "";
+        type = "";
+        phone = "";
+    }
 }

@@ -2,8 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.bishe.dao.TaskDao">
 
-    <select id="getAll" resultType="com.example.bishe.entity.TaskEntity">
+    <select id="selectByCondition" parameterType="com.example.bishe.entity.TaskEntity" resultType="com.example.bishe.entity.TaskEntity">
         select * from task
+        <where>
+            <if test="farmId != 0">
+                and farm_id = #{farmId}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+            <if test="state != null and state != ''">
+                and state = #{state}
+            </if>
+            <if test="workerId != 0">
+                and worker_id = #{workerId}
+            </if>
+        </where>
+
     </select>
 
     <insert id="add" parameterType="com.example.bishe.entity.TaskEntity">

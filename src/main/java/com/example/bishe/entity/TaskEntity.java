@@ -27,4 +27,19 @@ public class TaskEntity {
     private long workerId;
 
     private String note;
+
+    public TaskEntity() {
+        id = 0;
+        farmId = 0;
+        type = "";
+        number = 0;
+        deadline = new Timestamp(System.currentTimeMillis());
+        pos = "";
+        picId = 0;
+        gps = "";
+        money = 0;
+        state = "";
+        workerId = 0;
+        note = "";
+    }
 }
