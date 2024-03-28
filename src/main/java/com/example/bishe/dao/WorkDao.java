@@ -5,7 +5,7 @@ import com.example.bishe.entity.WorkEntity;
 import java.util.List;
 
 public interface WorkDao {
-    List<WorkEntity> getAll();
+    List<WorkEntity> searchByCondition(WorkEntity work);
 
     boolean add(WorkEntity work);
 

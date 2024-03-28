@@ -21,4 +21,16 @@ public class SingleCutEntity {
     private String state;
 
     private String note;
+
+    public SingleCutEntity() {
+        id = 0;
+        workerId = 0;
+        workId = 0;
+        pic1Id = 0;
+        pic2Id = 0;
+        pic3Id = 0;
+        number = 0;
+        state = null;
+        note = null;
+    }
 }

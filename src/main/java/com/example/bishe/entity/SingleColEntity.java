@@ -28,4 +28,17 @@ public class SingleColEntity {
 
     private String note;
 
+    public SingleColEntity() {
+        id = 0;
+        workerId = 0;
+        picId = 0;
+        age = 0;
+        circum = 0;
+        towards = null;
+        time = new Timestamp(System.currentTimeMillis());
+        weather = null;
+        location = null;
+        state = null;
+        note = null;
+    }
 }

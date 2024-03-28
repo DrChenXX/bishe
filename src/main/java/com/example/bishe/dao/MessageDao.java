@@ -5,7 +5,7 @@ import com.example.bishe.entity.MessageEntity;
 import java.util.List;
 
 public interface MessageDao {
-    List<MessageEntity> getAll();
+    List<MessageEntity> searchByCondition(MessageEntity message);
 
     boolean add(MessageEntity message);
 

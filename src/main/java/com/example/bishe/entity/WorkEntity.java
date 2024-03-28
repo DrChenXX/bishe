@@ -20,4 +20,15 @@ public class WorkEntity {
     private Timestamp deadline;
 
     private String submit;
+
+    public WorkEntity() {
+        id = 0;
+        workerId = 0;
+        taskId = 0;
+        type = null;
+        number = 0;
+        nownum = 0;
+        deadline = new Timestamp(System.currentTimeMillis());
+        submit = null;
+    }
 }

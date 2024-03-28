@@ -8,10 +8,10 @@
             <if test="farmId != 0">
                 and farm_id = #{farmId}
             </if>
-            <if test="type != null and type != ''">
+            <if test="type != null">
                 and type = #{type}
             </if>
-            <if test="state != null and state != ''">
+            <if test="state != null">
                 and state = #{state}
             </if>
             <if test="workerId != 0">

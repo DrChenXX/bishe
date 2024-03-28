@@ -2,8 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.bishe.dao.WorkDao">
 
-    <select id="getAll" resultType="com.example.bishe.entity.WorkEntity">
+    <select id="searchByCondition" parameterType="com.example.bishe.entity.WorkEntity" resultType="com.example.bishe.entity.WorkEntity">
         select * from work
+        <where>
+            <if test="id != 0">
+                and id = #{id}
+            </if>
+            <if test="workerId != 0">
+                and worker_id = #{workerId}
+            </if>
+            <if test="taskId != 0">
+                and task_id = #{taskId}
+            </if>
+            <if test="submit != null">
+                and submit = #{submit}
+            </if>
+        </where>
     </select>
 
     <insert id="add" parameterType="com.example.bishe.entity.WorkEntity">

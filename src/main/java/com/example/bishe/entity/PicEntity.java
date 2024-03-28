@@ -14,4 +14,10 @@ public class PicEntity {
 
     private Timestamp time;
 
+    public PicEntity() {
+        id = 0;
+        url = null;
+        workerId = 0;
+        time = new Timestamp(System.currentTimeMillis());
+    }
 }

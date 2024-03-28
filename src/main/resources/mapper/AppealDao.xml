@@ -2,8 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.bishe.dao.AppealDao">
 
-    <select id="getAll" resultType="com.example.bishe.entity.AppealEntity">
+    <select id="searchByCondition" parameterType="com.example.bishe.entity.AppealEntity" resultType="com.example.bishe.entity.AppealEntity">
         select * from appeal
+        <where>
+            <if test="id != 0">
+                and id = #{id}
+            </if>
+            <if test="type != null">
+                and type = #{type}
+            </if>
+            <if test="singleId != 0">
+                and single_id = #{singleId}
+            </if>
+        </where>
     </select>
 
     <insert id="add" parameterType="com.example.bishe.entity.AppealEntity">

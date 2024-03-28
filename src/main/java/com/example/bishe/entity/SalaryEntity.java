@@ -16,4 +16,11 @@ public class SalaryEntity {
 
     private String note;
 
+    public SalaryEntity() {
+        id = 0;
+        workerId = 0;
+        time = new Date(System.currentTimeMillis());
+        number = 0;
+        note = null;
+    }
 }

@@ -14,8 +14,8 @@ public class UserEntity {
 
     public UserEntity() {
         id = 0;
-        password = "";
-        type = "";
-        phone = "";
+        password = null;
+        type = null;
+        phone = null;
     }
 }

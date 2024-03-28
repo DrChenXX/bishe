@@ -8,7 +8,7 @@
             <if test="id != 0">
                 and id = #{id}
             </if>
-            <if test="type != null and type != ''">
+            <if test="type != null">
                 and type = #{type}
             </if>
         </where>

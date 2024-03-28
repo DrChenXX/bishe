@@ -5,7 +5,7 @@ import com.example.bishe.entity.NoticeEntity;
 import java.util.List;
 
 public interface NoticeDao {
-    List<NoticeEntity> getAll();
+    List<NoticeEntity> searchByCondition(NoticeEntity notice);
 
     boolean add(NoticeEntity notice);
 

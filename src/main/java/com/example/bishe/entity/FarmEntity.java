@@ -10,4 +10,9 @@ public class FarmEntity {
 
     private long adminId;
 
+    public FarmEntity() {
+        id = 0;
+        name = null;
+        adminId = 0;
+    }
 }

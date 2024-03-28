@@ -5,7 +5,7 @@ import com.example.bishe.entity.PicEntity;
 import java.util.List;
 
 public interface PicDao {
-    List<PicEntity> getAll();
+    List<PicEntity> searchByCondition(PicEntity pic);
 
     boolean add(PicEntity pic);
 

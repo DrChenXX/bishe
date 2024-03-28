@@ -2,8 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.bishe.dao.NoticeDao">
 
-    <select id="getAll" resultType="com.example.bishe.entity.NoticeEntity">
+    <select id="searchByCondition" parameterType="com.example.bishe.entity.NoticeEntity" resultType="com.example.bishe.entity.NoticeEntity">
         select * from notice
+        <where>
+            <if test="id != 0">
+                and id = #{id}
+            </if>
+            <if test="type != null">
+                and type = #{type}
+            </if>
+            <if test="target != 0">
+                and target = #{target}
+            </if>
+        </where>
     </select>
 
     <insert id="add" parameterType="com.example.bishe.entity.NoticeEntity">

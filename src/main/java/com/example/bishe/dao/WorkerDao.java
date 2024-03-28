@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface WorkerDao {
 
-    List<WorkerEntity> getAll();
+    List<WorkerEntity> searchByCondition(WorkerEntity worker);
 
     boolean add(WorkerEntity worker);
 

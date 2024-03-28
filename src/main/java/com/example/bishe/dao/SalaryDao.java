@@ -5,7 +5,7 @@ import com.example.bishe.entity.SalaryEntity;
 import java.util.List;
 
 public interface SalaryDao {
-    List<SalaryEntity> getAll();
+    List<SalaryEntity> searchByCondition(SalaryEntity salary);
 
     boolean add(SalaryEntity salary);
 

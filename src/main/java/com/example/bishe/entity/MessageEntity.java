@@ -12,4 +12,10 @@ public class MessageEntity {
 
     private String read;
 
+    public MessageEntity() {
+        id = 0;
+        noticeId = 0;
+        workerId = 0;
+        read = null;
+    }
 }

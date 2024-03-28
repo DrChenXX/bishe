@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface SingleCutDao {
 
-    List<SingleCutEntity> getAll();
+    List<SingleCutEntity> searchByCondition(SingleCutEntity singleCut);
 
     boolean add(SingleCutEntity singleCut);
 

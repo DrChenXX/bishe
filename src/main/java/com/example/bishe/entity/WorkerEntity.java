@@ -13,4 +13,12 @@ public class WorkerEntity {
     private String bank;
 
     private String selfId;
+
+    public WorkerEntity() {
+        id = 0;
+        name = null;
+        farmId = 0;
+        bank = null;
+        selfId = null;
+    }
 }

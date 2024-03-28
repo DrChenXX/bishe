@@ -12,4 +12,10 @@ public class NoticeEntity {
 
     private String content;
 
+    public NoticeEntity() {
+        id = 0;
+        type = null;
+        target = 0;
+        content = null;
+    }
 }

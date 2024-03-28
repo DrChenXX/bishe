@@ -13,4 +13,12 @@ public class AppealEntity {
     private String reason;
 
     private String state;
+
+    public AppealEntity() {
+        id = 0;
+        type = null;
+        singleId = 0;
+        reason = null;
+        state = null;
+    }
 }

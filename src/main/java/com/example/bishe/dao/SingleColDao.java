@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface SingleColDao {
 
-    List<SingleColEntity> getAll();
+    List<SingleColEntity> searchByCondition(SingleColEntity singleCol);
 
     boolean add(SingleColEntity singleCol);
 

@@ -31,15 +31,15 @@ public class TaskEntity {
     public TaskEntity() {
         id = 0;
         farmId = 0;
-        type = "";
+        type = null;
         number = 0;
         deadline = new Timestamp(System.currentTimeMillis());
-        pos = "";
+        pos = null;
         picId = 0;
-        gps = "";
+        gps = null;
         money = 0;
-        state = "";
+        state = null;
         workerId = 0;
-        note = "";
+        note = null;
     }
 }
