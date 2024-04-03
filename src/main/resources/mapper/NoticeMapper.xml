@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bishe.mapper.NoticeMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.bishe.model.entity.Notice">
+            <result property="id" column="id" jdbcType="BIGINT"/>
+            <result property="type" column="type" jdbcType="VARCHAR"/>
+            <result property="target" column="target" jdbcType="BIGINT"/>
+            <result property="content" column="content" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,type,target,
+        content
+    </sql>
+    <select id="searchByCondition" parameterType="com.example.bishe.model.entity.Notice" resultType="com.example.bishe.model.entity.Notice">
+        select * from notice
+        <where>
+            <if test="id != 0">
+                and id = #{id}
+            </if>
+            <if test="type != null">
+                and type = #{type}
+            </if>
+            <if test="target != 0">
+                and target = #{target}
+            </if>
+        </where>
+    </select>
+</mapper>

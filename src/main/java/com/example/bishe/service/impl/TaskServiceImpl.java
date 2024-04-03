@@ -1,41 +1,22 @@
 package com.example.bishe.service.impl;
 
-import com.example.bishe.dao.TaskDao;
-import com.example.bishe.entity.TaskEntity;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.bishe.model.entity.Task;
 import com.example.bishe.service.TaskService;
-import com.example.bishe.util.MybatisUtil;
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.bishe.mapper.TaskMapper;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
-import java.util.List;
-import java.util.stream.Collectors;
-
+/**
+* @author talha
+* @description 针对表【task】的数据库操作Service实现
+* @createDate 2024-04-03 11:11:29
+*/
 @Service
-public class TaskServiceImpl implements TaskService {
+public class TaskServiceImpl extends ServiceImpl<TaskMapper, Task>
+    implements TaskService{
 
-    @Override
-    public void publish(TaskEntity task) {
-        task.setId(Instant.now().getEpochSecond());
-        SqlSession session = null;
-        try {
-            session = MybatisUtil.getSqlSession();
-            TaskDao taskDao = session.getMapper(TaskDao.class);
-            taskDao.add(task);
-            MybatisUtil.commit(session);
-        }catch (Exception e){
-            e.printStackTrace();
-            MybatisUtil.rollBack(session);
-        }
-    }
-
-    @Override
-    public List<TaskEntity> search(TaskEntity task) {
-        SqlSession session = MybatisUtil.getSqlSession();
-        TaskDao taskDao = session.getMapper(TaskDao.class);
-        List<TaskEntity> taskEntityList = taskDao.selectByCondition(task);
-        MybatisUtil.close();
-        return taskEntityList;
-    }
 }
+
+
+
+

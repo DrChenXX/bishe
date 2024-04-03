@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bishe.mapper.MessageMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.bishe.model.entity.Message">
+            <result property="id" column="id" jdbcType="BIGINT"/>
+            <result property="notice_id" column="notice_id" jdbcType="BIGINT"/>
+            <result property="worker_Id" column="worker_Id" jdbcType="BIGINT"/>
+            <result property="read" column="read" jdbcType="CHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,notice_id,worker_Id,
+        read
+    </sql>
+    <select id="searchByCondition" parameterType="com.example.bishe.model.entity.Message" resultType="com.example.bishe.model.entity.Message">
+        select * from message
+        <where>
+            <if test="id != 0">
+                and id = #{id}
+            </if>
+            <if test="noticeId != 0">
+                and notice_id = #{noticeId}
+            </if>
+            <if test="workerId != 0">
+                and worker_id = #{workerId}
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bishe.mapper.SingleCutMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.bishe.model.entity.SingleCut">
+            <result property="id" column="id" jdbcType="BIGINT"/>
+            <result property="worker_id" column="worker_id" jdbcType="BIGINT"/>
+            <result property="work_id" column="work_id" jdbcType="BIGINT"/>
+            <result property="pic1_id" column="pic1_id" jdbcType="BIGINT"/>
+            <result property="pic2_id" column="pic2_id" jdbcType="BIGINT"/>
+            <result property="pic3_id" column="pic3_id" jdbcType="BIGINT"/>
+            <result property="number" column="number" jdbcType="INTEGER"/>
+            <result property="state" column="state" jdbcType="CHAR"/>
+            <result property="note" column="note" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,worker_id,work_id,
+        pic1_id,pic2_id,pic3_id,
+        number,state,note
+    </sql>
+    <select id="searchByCondition" parameterType="com.example.bishe.model.entity.SingleCut" resultType="com.example.bishe.model.entity.SingleCut">
+        select * from single_cut
+        <where>
+            <if test="id != 0">
+                and id = #{id}
+            </if>
+            <if test="workerId != 0">
+                and worker_id = #{workerId}
+            </if>
+            <if test="workId != 0">
+                and work_id = #{workId}
+            </if>
+            <if test="state != null">
+                and state = #{state}
+            </if>
+        </where>
+    </select>
+</mapper>

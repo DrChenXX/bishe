@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.bishe.mapper.WorkMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.bishe.model.entity.Work">
+            <result property="id" column="id" jdbcType="BIGINT"/>
+            <result property="worker_id" column="worker_id" jdbcType="BIGINT"/>
+            <result property="task_id" column="task_id" jdbcType="BIGINT"/>
+            <result property="type" column="type" jdbcType="VARCHAR"/>
+            <result property="number" column="number" jdbcType="INTEGER"/>
+            <result property="nownum" column="nownum" jdbcType="INTEGER"/>
+            <result property="deadline" column="deadline" jdbcType="TIMESTAMP"/>
+            <result property="submit" column="submit" jdbcType="CHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,worker_id,task_id,
+        type,number,nownum,
+        deadline,submit
+    </sql>
+
+    <select id="searchByCondition" parameterType="com.example.bishe.model.entity.Work" resultType="com.example.bishe.model.entity.Work">
+        select * from work
+        <where>
+            <if test="id != 0">
+                and id = #{id}
+            </if>
+            <if test="workerId != 0">
+                and worker_id = #{workerId}
+            </if>
+            <if test="taskId != 0">
+                and task_id = #{taskId}
+            </if>
+            <if test="submit != null">
+                and submit = #{submit}
+            </if>
+        </where>
+    </select>
+</mapper>
