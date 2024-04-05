@@ -2,6 +2,7 @@ package com.example.bishe.controller;
 
 import cn.dev33.satoken.util.SaResult;
 import com.example.bishe.model.dto.AddUserForm;
+import com.example.bishe.model.dto.UpdatePasswordRequest;
 import com.example.bishe.model.entity.User;
 import com.example.bishe.service.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -51,11 +52,36 @@ public class UserController {
     @DeleteMapping("/delete")
     public SaResult deleteUser(@RequestBody Long id) {
         Boolean deleted = userService.deleteUser(id);
-        if (deleted) {
+        if (Boolean.TRUE.equals(deleted)) {
             return SaResult.ok().setMsg("删除用户成功");
+        }else {
+            return SaResult.error("删除用户失败");
         }
-        return SaResult.error("删除用户失败");
 
+    }
+
+    @PostMapping("/resetPassword")
+    public SaResult resetPassword(@RequestBody Long id) {
+        Boolean b = userService.resetPassword(id);
+        if (Boolean.TRUE.equals(b)) {
+            return SaResult.ok().setMsg("密码重置成功");
+        }else {
+            return SaResult.error("密码重置失败");
+        }
+    }
+
+    @PostMapping("/updatePassword")
+    public SaResult updatePassword(@RequestBody UpdatePasswordRequest updatePasswordRequest) {
+        int updade = userService.updatePassword(updatePasswordRequest);
+        if (updade > 0) {
+            return SaResult.ok().setMsg("密码修改成功");
+        } else if (updade == -1) {
+            return SaResult.error("新密码和确认密码不相同");
+        } else if (updade == -2) {
+            return SaResult.error("原密码错误");
+        } else {
+            return SaResult.error("密码修改失败");
+        }
     }
 
 }

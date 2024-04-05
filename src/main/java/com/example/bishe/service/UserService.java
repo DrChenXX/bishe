@@ -1,6 +1,7 @@
 package com.example.bishe.service;
 
 import com.example.bishe.model.dto.AddUserForm;
+import com.example.bishe.model.dto.UpdatePasswordRequest;
 import com.example.bishe.model.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -60,4 +61,16 @@ public interface UserService extends IService<User> {
      * @param id 用户ID
      */
     User getUserById(Long id);
+
+    /**
+     * 重置密码
+     * @param id 用户id
+     */
+    Boolean resetPassword(Long id);
+
+    /**
+     * 修改密码
+     * @param updatePasswordRequest 密码
+     */
+    int updatePassword(UpdatePasswordRequest updatePasswordRequest);
 }

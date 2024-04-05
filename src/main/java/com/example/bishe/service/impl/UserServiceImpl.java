@@ -5,6 +5,7 @@ import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.bishe.model.dto.AddUserForm;
+import com.example.bishe.model.dto.UpdatePasswordRequest;
 import com.example.bishe.model.entity.User;
 import com.example.bishe.service.UserService;
 import com.example.bishe.mapper.UserMapper;
@@ -25,13 +26,14 @@ import static com.example.bishe.contnat.UserConstant.PASSWORD;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl extends ServiceImpl<UserMapper, User>
-    implements UserService{
+    implements UserService {
 
     @Resource
     private UserMapper userMapper;
 
     /**
      * 登录
+     *
      * @param username 用户名
      * @param password 密码
      * @return token
@@ -45,7 +47,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         User user = userMapper.selectOne(queryWrapper);
         if (user == null) {
             return null;
-        }else {
+        } else {
             StpUtil.login(user.getId());
         }
         return StpUtil.getTokenValue();
@@ -53,6 +55,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
     /**
      * 判断用户是否已登录
+     *
      * @return true/false
      */
     @Override
@@ -70,6 +73,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
     /**
      * 获取所有用户
+     *
      * @return 所有用户
      */
     @Override
@@ -80,6 +84,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
     /**
      * 添加用户
+     *
      * @param addUserForm 用户添加表单
      * @return true/false
      */
@@ -102,26 +107,66 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     public Boolean deleteUser(Long id) {
         int delete = userMapper.deleteById(id);
         //TODO 从角色用户关联表中删除
-        return delete >= 0;
+        return delete >= 1;
     }
 
     /**
      * 更新用户
+     *
      * @param user 用户实体
      */
     @Override
     public Boolean updateUser(User user) {
         int update = userMapper.updateById(user);
-        return update >= 0;
+        return update >= 1;
     }
 
     /**
      * 根据用户ID查询用户
+     *
      * @param id 用户ID
      */
     @Override
     public User getUserById(Long id) {
         return userMapper.selectById(id);
+    }
+
+    /**
+     * 重置密码
+     *
+     * @param id 用户id
+     */
+    @Override
+    public Boolean resetPassword(Long id) {
+        User user = userMapper.selectById(id);
+        user.setPassword(SaSecureUtil.md5(PASSWORD));
+        int update = userMapper.updateById(user);
+        return update >= 1;
+
+    }
+
+    /**
+     * 修改密码
+     *
+     * @param updatePasswordRequest 密码
+     */
+    @Override
+    public int updatePassword(UpdatePasswordRequest updatePasswordRequest) {
+        Long loginId = Long.valueOf(String.valueOf(StpUtil.getLoginId())).longValue();
+        User user = userMapper.selectById(loginId);
+        //比较新密码和确认密码
+        if (!updatePasswordRequest.getNewPassword().equals(updatePasswordRequest.getConfirmPassword())) {
+            return -1;
+        }
+        //比较用户提交的旧密码和数据库中存储的密码
+        if (!user.getPassword().equals(SaSecureUtil.md5(updatePasswordRequest.getOldPassword()))) {
+            return -2;
+        } else {
+            //修改密码
+            user.setPassword(SaSecureUtil.md5(updatePasswordRequest.getNewPassword()));
+            userMapper.updateById(user);
+        }
+        return 1;
     }
 }
 
