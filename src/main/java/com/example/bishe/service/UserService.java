@@ -1,7 +1,10 @@
 package com.example.bishe.service;
 
+import com.example.bishe.model.dto.AddUserForm;
 import com.example.bishe.model.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
 * @author talha
@@ -27,4 +30,34 @@ public interface UserService extends IService<User> {
      * 用户登出
      */
     void logout();
+
+    /**
+     * 获取所有用户
+     */
+    List<User> getAllUser();
+
+    /**
+     * 添加用户
+     * @param addUserForm 用户添加表单
+     * @return true/false
+     */
+    Boolean addUser(AddUserForm addUserForm);
+
+    /**
+     * 删除用户
+     * @param id 用户ID
+     */
+    Boolean deleteUser(Long id);
+
+    /**
+     * 更新用户
+     * @param user 用户实体
+     */
+    Boolean updateUser(User user);
+
+    /**
+     * 根据用户ID查询用户
+     * @param id 用户ID
+     */
+    User getUserById(Long id);
 }

@@ -35,7 +35,7 @@ public class User implements Serializable {
      * 头像地址
      */
     @TableField(value = "avatar_url")
-    private String avatar_url;
+    private String avatarUrl;
 
     /**
      * 电话
