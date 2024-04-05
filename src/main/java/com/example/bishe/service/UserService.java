@@ -9,8 +9,22 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2024-04-03 11:11:29
 */
 public interface UserService extends IService<User> {
+    /**
+     * 用户登录
+     * @param username 用户名
+     * @param password 密码
+     * @return token
+     */
+    String login(String username, String password);
 
-    boolean addUser(User user);
+    /**
+     * 判断用户是否已登录
+     * @return true/false
+     */
+    Boolean isLogin();
 
-    boolean updateUser(User user);
+    /**
+     * 用户登出
+     */
+    void logout();
 }

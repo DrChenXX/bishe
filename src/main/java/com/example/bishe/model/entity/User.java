@@ -70,9 +70,9 @@ public class User implements Serializable {
     /**
      * 是否删除(0-未删除，1-已删除)
      */
-    @TableField(value = "delete")
+    @TableField(value = "deleted")
     @TableLogic
-    private Integer delete;
+    private Integer deleted;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
