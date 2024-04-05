@@ -3,11 +3,11 @@ package com.example.bishe.controller;
 import cn.dev33.satoken.util.SaResult;
 import com.example.bishe.model.dto.LoginRequest;
 import com.example.bishe.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "登录鉴权模块", description = "登录注销")
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -20,7 +20,7 @@ public class AuthController {
      * @param loginRequest 登录实体
      * @return token
      */
-    @RequestMapping("/login")
+    @PostMapping("/login")
     public SaResult login(@RequestBody LoginRequest loginRequest) {
 
         String username = loginRequest.getUsername();
@@ -33,7 +33,7 @@ public class AuthController {
         return SaResult.ok().setData(token);
     }
 
-    @RequestMapping("isLogin")
+    @GetMapping("isLogin")
     public SaResult isLogin() {
         Boolean login = userService.isLogin();
         if (login) {
@@ -43,7 +43,7 @@ public class AuthController {
         }
     }
 
-    @RequestMapping("logout")
+    @GetMapping("logout")
     public SaResult logout() {
         userService.logout();
         return SaResult.ok();

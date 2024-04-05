@@ -38,9 +38,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
      */
     @Override
     public String login(String username, String password) {
+        String s = SaSecureUtil.md5(password);
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(User::getUsername, username);
-        queryWrapper.eq(User::getPassword, password);
+        queryWrapper.eq(User::getPassword, s);
         User user = userMapper.selectOne(queryWrapper);
         if (user == null) {
             return null;

@@ -4,14 +4,13 @@ import cn.dev33.satoken.util.SaResult;
 import com.example.bishe.model.dto.AddUserForm;
 import com.example.bishe.model.entity.User;
 import com.example.bishe.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "用户管理模块", description = "用户信息增删改查")
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -19,7 +18,7 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @RequestMapping("/allUser")
+    @GetMapping("/allUser")
     public SaResult getAllUser() {
         List<User> allUser = userService.getAllUser();
         return SaResult.data(allUser);
@@ -43,13 +42,13 @@ public class UserController {
         return SaResult.error("添加更新失败");
     }
 
-    @PostMapping()
+    @GetMapping("/getUserById")
     public SaResult getUserById(@RequestBody Long id) {
         User user = userService.getUserById(id);
         return SaResult.data(user);
     }
 
-    @PostMapping("/delete")
+    @DeleteMapping("/delete")
     public SaResult deleteUser(@RequestBody Long id) {
         Boolean deleted = userService.deleteUser(id);
         if (deleted) {
