@@ -7,6 +7,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * 登录鉴权模块
+ * @author talha
+ */
 @Tag(name = "登录鉴权模块", description = "登录注销")
 @RestController
 @RequestMapping("/auth")
@@ -15,11 +19,6 @@ public class AuthController {
     @Resource
     private UserService userService;
 
-    /**
-     * 登录
-     * @param loginRequest 登录实体
-     * @return token
-     */
     @PostMapping("/login")
     public SaResult login(@RequestBody LoginRequest loginRequest) {
 

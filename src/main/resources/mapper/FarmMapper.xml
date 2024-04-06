@@ -5,26 +5,16 @@
 <mapper namespace="com.example.bishe.mapper.FarmMapper">
 
     <resultMap id="BaseResultMap" type="com.example.bishe.model.entity.Farm">
-            <result property="id" column="id" jdbcType="BIGINT"/>
+            <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="name" column="name" jdbcType="VARCHAR"/>
-            <result property="admin_id" column="admin_id" jdbcType="BIGINT"/>
+            <result property="address" column="address" jdbcType="VARCHAR"/>
+            <result property="descriptions" column="descriptions" jdbcType="VARCHAR"/>
+            <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="deleted" column="deleted" jdbcType="TINYINT"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,name,admin_id
+        id,name,address,
+        descriptions,create_time,deleted
     </sql>
-    <select id="searchByCondition" parameterType="com.example.bishe.model.entity.Farm" resultType="com.example.bishe.model.entity.Farm">
-        select * from farm
-        <where>
-            <if test="id != 0">
-                and id = #{id}
-            </if>
-            <if test="name != null">
-                and name = #{name}
-            </if>
-            <if test="adminId != 0">
-                and admin_id = #{adminId}
-            </if>
-        </where>
-    </select>
 </mapper>

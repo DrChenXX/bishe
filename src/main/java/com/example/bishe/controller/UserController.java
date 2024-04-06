@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * 用户管理模块
+ * @author talha
+ */
 @Tag(name = "用户管理模块", description = "用户信息增删改查")
 @RestController
 @RequestMapping("/user")
@@ -19,25 +23,25 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @GetMapping("/allUser")
+    @GetMapping("/list")
     public SaResult getAllUser() {
-        List<User> allUser = userService.getAllUser();
-        return SaResult.data(allUser);
+        List<User> userList = userService.getUserList();
+        return SaResult.data(userList);
     }
 
-    @PostMapping("/addUser")
+    @PostMapping("/add")
     public SaResult addUser(@RequestBody AddUserForm addUserForm) {
-        Boolean added = userService.addUser(addUserForm);
-        if (added) {
+        int added = userService.addUser(addUserForm);
+        if (added >= 1) {
             return SaResult.ok().setMsg("用户添加成功");
         }
         return SaResult.error("添加用户失败");
     }
 
-    @PostMapping()
+    @PostMapping("/update")
     public SaResult updateUser(@RequestBody User user) {
-        Boolean updated = userService.updateUser(user);
-        if (updated) {
+        int updated = userService.updateUser(user);
+        if (updated >= 1) {
             return SaResult.ok().setMsg("用户更新成功");
         }
         return SaResult.error("添加更新失败");
@@ -51,8 +55,8 @@ public class UserController {
 
     @DeleteMapping("/delete")
     public SaResult deleteUser(@RequestBody Long id) {
-        Boolean deleted = userService.deleteUser(id);
-        if (Boolean.TRUE.equals(deleted)) {
+        int deleted = userService.deleteUser(id);
+        if (deleted >= 1) {
             return SaResult.ok().setMsg("删除用户成功");
         }else {
             return SaResult.error("删除用户失败");
@@ -62,8 +66,8 @@ public class UserController {
 
     @PostMapping("/resetPassword")
     public SaResult resetPassword(@RequestBody Long id) {
-        Boolean b = userService.resetPassword(id);
-        if (Boolean.TRUE.equals(b)) {
+        int reset = userService.resetPassword(id);
+        if (reset >= 1) {
             return SaResult.ok().setMsg("密码重置成功");
         }else {
             return SaResult.error("密码重置失败");
@@ -73,7 +77,7 @@ public class UserController {
     @PostMapping("/updatePassword")
     public SaResult updatePassword(@RequestBody UpdatePasswordRequest updatePasswordRequest) {
         int updade = userService.updatePassword(updatePasswordRequest);
-        if (updade > 0) {
+        if (updade >= 1) {
             return SaResult.ok().setMsg("密码修改成功");
         } else if (updade == -1) {
             return SaResult.error("新密码和确认密码不相同");

@@ -73,11 +73,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
     /**
      * 获取所有用户
-     *
      * @return 所有用户
      */
     @Override
-    public List<User> getAllUser() {
+    public List<User> getUserList() {
         //TODO 分页查询
         return this.list();
     }
@@ -89,7 +88,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
      * @return true/false
      */
     @Override
-    public Boolean addUser(AddUserForm addUserForm) {
+    public int addUser(AddUserForm addUserForm) {
         User user = new User();
         user.setUsername(addUserForm.getUsername());
         user.setPassword(SaSecureUtil.md5(PASSWORD));
@@ -98,16 +97,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             user.setEmail(addUserForm.getEmail());
         }
         user.setAvatarUrl(AVATAR_URL);
-        int insert = userMapper.insert(user);
+        return userMapper.insert(user);
         //TODO 添加角色信息
-        return insert >= 1;
     }
 
     @Override
-    public Boolean deleteUser(Long id) {
-        int delete = userMapper.deleteById(id);
+    public int deleteUser(Long id) {
+        return userMapper.deleteById(id);
         //TODO 从角色用户关联表中删除
-        return delete >= 1;
     }
 
     /**
@@ -116,9 +113,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
      * @param user 用户实体
      */
     @Override
-    public Boolean updateUser(User user) {
-        int update = userMapper.updateById(user);
-        return update >= 1;
+    public int updateUser(User user) {
+        return userMapper.updateById(user);
     }
 
     /**
@@ -133,21 +129,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
     /**
      * 重置密码
-     *
      * @param id 用户id
      */
     @Override
-    public Boolean resetPassword(Long id) {
+    public int resetPassword(Long id) {
         User user = userMapper.selectById(id);
         user.setPassword(SaSecureUtil.md5(PASSWORD));
-        int update = userMapper.updateById(user);
-        return update >= 1;
+        return userMapper.updateById(user);
 
     }
 
     /**
      * 修改密码
-     *
      * @param updatePasswordRequest 密码
      */
     @Override
@@ -164,9 +157,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         } else {
             //修改密码
             user.setPassword(SaSecureUtil.md5(updatePasswordRequest.getNewPassword()));
-            userMapper.updateById(user);
+            return userMapper.updateById(user);
         }
-        return 1;
+
     }
 }
 

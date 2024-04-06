@@ -35,26 +35,26 @@ public interface UserService extends IService<User> {
     /**
      * 获取所有用户
      */
-    List<User> getAllUser();
+    List<User> getUserList();
 
     /**
      * 添加用户
      * @param addUserForm 用户添加表单
      * @return true/false
      */
-    Boolean addUser(AddUserForm addUserForm);
+    int addUser(AddUserForm addUserForm);
 
     /**
      * 删除用户
      * @param id 用户ID
      */
-    Boolean deleteUser(Long id);
+    int deleteUser(Long id);
 
     /**
      * 更新用户
      * @param user 用户实体
      */
-    Boolean updateUser(User user);
+    int updateUser(User user);
 
     /**
      * 根据用户ID查询用户
@@ -66,7 +66,7 @@ public interface UserService extends IService<User> {
      * 重置密码
      * @param id 用户id
      */
-    Boolean resetPassword(Long id);
+    int resetPassword(Long id);
 
     /**
      * 修改密码
