@@ -81,6 +81,10 @@ public class TaskServiceImpl extends ServiceImpl<TaskMapper, Task>
      */
     @Override
     public int deleteTask(Long id) {
+        Task task = taskMapper.selectById(id);
+        if (task.getWorkerId() == 0L) {
+            return 0;
+        }
         return taskMapper.deleteById(id);
         //todo 删除关联
     }
@@ -92,6 +96,10 @@ public class TaskServiceImpl extends ServiceImpl<TaskMapper, Task>
      */
     @Override
     public int updateTask(Task task) {
+        Task task1 = taskMapper.selectById(task.getId());
+        if (task1.getWorkerId() == 0L) {
+            return 0;
+        }
         return taskMapper.updateById(task);
     }
 

@@ -23,6 +23,12 @@ public class TaskController {
         return SaResult.data(taskList);
     }
 
+    @GetMapping("/freetask")
+    public SaResult getFreeTask() {
+        List<Task> taskList = taskService.getFreeTaskList();
+        return SaResult.data(taskList);
+    }
+
     @PostMapping("/add")
     public SaResult addTask(@RequestBody AddTaskForm addTaskForm) {
         int added = taskService.addTask(addTaskForm);
@@ -42,7 +48,7 @@ public class TaskController {
     }
 
     @PostMapping("/getTaskById")
-    private SaResult getTaskById(@RequestBody Long id) {
+    public SaResult getTaskById(@RequestBody Long id) {
         Task task = taskService.getTaskById(id);
         return SaResult.data(task);
     }
@@ -55,6 +61,14 @@ public class TaskController {
         }else {
             return SaResult.error("删除任务失败");
         }
+    }
 
+    @PostMapping("/publish")
+    public SaResult publishTask(@RequestBody Long id) {
+        int published = taskService.publishTask(id);
+        if (published >= 1) {
+            return SaResult.ok().setMsg("发布任务成功");
+        }
+        return SaResult.error("发布任务失败");
     }
 }
