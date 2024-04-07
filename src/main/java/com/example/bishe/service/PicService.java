@@ -16,7 +16,9 @@ public interface PicService extends IService<Pic> {
      * @param file 表单文件对象
      * @return 文件url
      */
-    String uploadFile(MultipartFile file);
+    String upload(MultipartFile file);
+
+    String uploadFile(String filePath);
 
     /**
      * 删除文件
