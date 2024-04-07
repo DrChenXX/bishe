@@ -6,8 +6,8 @@
 
     <resultMap id="BaseResultMap" type="com.example.bishe.model.entity.Work">
             <result property="id" column="id" jdbcType="BIGINT"/>
-            <result property="worker_id" column="worker_id" jdbcType="BIGINT"/>
-            <result property="task_id" column="task_id" jdbcType="BIGINT"/>
+            <result property="workerId" column="worker_id" jdbcType="BIGINT"/>
+            <result property="taskId" column="task_id" jdbcType="BIGINT"/>
             <result property="type" column="type" jdbcType="VARCHAR"/>
             <result property="number" column="number" jdbcType="INTEGER"/>
             <result property="nownum" column="nownum" jdbcType="INTEGER"/>

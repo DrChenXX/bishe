@@ -6,7 +6,7 @@
 
     <resultMap id="BaseResultMap" type="com.example.bishe.model.entity.Task">
             <result property="id" column="id" jdbcType="BIGINT"/>
-            <result property="farm_id" column="farm_id" jdbcType="BIGINT"/>
+            <result property="farmId" column="farm_id" jdbcType="BIGINT"/>
             <result property="type" column="type" jdbcType="VARCHAR"/>
             <result property="number" column="number" jdbcType="INTEGER"/>
             <result property="deadline" column="deadline" jdbcType="TIMESTAMP"/>

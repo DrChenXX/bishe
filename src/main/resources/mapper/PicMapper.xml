@@ -7,7 +7,7 @@
     <resultMap id="BaseResultMap" type="com.example.bishe.model.entity.Pic">
             <result property="id" column="id" jdbcType="BIGINT"/>
             <result property="url" column="url" jdbcType="VARCHAR"/>
-            <result property="worker_id" column="worker_id" jdbcType="BIGINT"/>
+            <result property="workerId" column="worker_id" jdbcType="BIGINT"/>
             <result property="time" column="time" jdbcType="TIMESTAMP"/>
     </resultMap>
 

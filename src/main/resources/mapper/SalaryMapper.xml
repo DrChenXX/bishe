@@ -6,7 +6,7 @@
 
     <resultMap id="BaseResultMap" type="com.example.bishe.model.entity.Salary">
             <result property="id" column="id" jdbcType="BIGINT"/>
-            <result property="worker_id" column="worker_id" jdbcType="BIGINT"/>
+            <result property="workerId" column="worker_id" jdbcType="BIGINT"/>
             <result property="time" column="time" jdbcType="DATE"/>
             <result property="number" column="number" jdbcType="BIGINT"/>
             <result property="note" column="note" jdbcType="VARCHAR"/>

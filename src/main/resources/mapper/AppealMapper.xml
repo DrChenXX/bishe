@@ -4,10 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.bishe.mapper.AppealMapper">
 
-    <resultMap id="BaseResultMap" type="com.example.bishe.mapper.AppealMapper">
+    <resultMap id="BaseResultMap" type="com.example.bishe.model.entity.Appeal">
             <result property="id" column="id" jdbcType="BIGINT"/>
             <result property="type" column="type" jdbcType="CHAR"/>
-            <result property="single_id" column="single_id" jdbcType="BIGINT"/>
+            <result property="singleId" column="single_id" jdbcType="BIGINT"/>
             <result property="reason" column="reason" jdbcType="VARCHAR"/>
             <result property="state" column="state" jdbcType="CHAR"/>
     </resultMap>
