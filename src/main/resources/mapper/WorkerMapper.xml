@@ -7,9 +7,9 @@
     <resultMap id="BaseResultMap" type="com.example.bishe.model.entity.Worker">
             <result property="id" column="id" jdbcType="BIGINT"/>
             <result property="name" column="name" jdbcType="VARCHAR"/>
-            <result property="farm_id" column="farm_id" jdbcType="BIGINT"/>
+            <result property="farmId" column="farm_id" jdbcType="BIGINT"/>
             <result property="bank" column="bank" jdbcType="VARCHAR"/>
-            <result property="self_id" column="self_id" jdbcType="VARCHAR"/>
+            <result property="selfId" column="self_id" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">

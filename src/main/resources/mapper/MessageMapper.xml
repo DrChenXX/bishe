@@ -6,8 +6,8 @@
 
     <resultMap id="BaseResultMap" type="com.example.bishe.model.entity.Message">
             <result property="id" column="id" jdbcType="BIGINT"/>
-            <result property="notice_id" column="notice_id" jdbcType="BIGINT"/>
-            <result property="worker_Id" column="worker_Id" jdbcType="BIGINT"/>
+            <result property="noticeId" column="notice_id" jdbcType="BIGINT"/>
+            <result property="workerId" column="worker_Id" jdbcType="BIGINT"/>
             <result property="read" column="read" jdbcType="CHAR"/>
     </resultMap>
 

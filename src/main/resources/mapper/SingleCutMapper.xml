@@ -6,11 +6,11 @@
 
     <resultMap id="BaseResultMap" type="com.example.bishe.model.entity.SingleCut">
             <result property="id" column="id" jdbcType="BIGINT"/>
-            <result property="worker_id" column="worker_id" jdbcType="BIGINT"/>
-            <result property="work_id" column="work_id" jdbcType="BIGINT"/>
-            <result property="pic1_id" column="pic1_id" jdbcType="BIGINT"/>
-            <result property="pic2_id" column="pic2_id" jdbcType="BIGINT"/>
-            <result property="pic3_id" column="pic3_id" jdbcType="BIGINT"/>
+            <result property="workerId" column="worker_id" jdbcType="BIGINT"/>
+            <result property="workId" column="work_id" jdbcType="BIGINT"/>
+            <result property="pic1Id" column="pic1_id" jdbcType="BIGINT"/>
+            <result property="pic2Id" column="pic2_id" jdbcType="BIGINT"/>
+            <result property="pic3Id" column="pic3_id" jdbcType="BIGINT"/>
             <result property="number" column="number" jdbcType="INTEGER"/>
             <result property="state" column="state" jdbcType="CHAR"/>
             <result property="note" column="note" jdbcType="VARCHAR"/>

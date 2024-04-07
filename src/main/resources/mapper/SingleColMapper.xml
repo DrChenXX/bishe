@@ -6,8 +6,8 @@
 
     <resultMap id="BaseResultMap" type="com.example.bishe.model.entity.SingleCol">
             <result property="id" column="id" jdbcType="BIGINT"/>
-            <result property="worker_id" column="worker_id" jdbcType="BIGINT"/>
-            <result property="pic_id" column="pic_id" jdbcType="BIGINT"/>
+            <result property="workerId" column="worker_id" jdbcType="BIGINT"/>
+            <result property="picId" column="pic_id" jdbcType="BIGINT"/>
             <result property="age" column="age" jdbcType="INTEGER"/>
             <result property="circum" column="circum" jdbcType="INTEGER"/>
             <result property="towards" column="towards" jdbcType="VARCHAR"/>

@@ -53,7 +53,7 @@ public class Task implements Serializable {
      * 地点照片
      */
     @TableField(value = "pic_id")
-    private Long pic_id;
+    private Long picId;
 
     /**
      * GPS定位
@@ -77,7 +77,7 @@ public class Task implements Serializable {
      * 领取ID
      */
     @TableField(value = "worker_id")
-    private Long worker_id;
+    private Long workerId;
 
     /**
      * 备注
