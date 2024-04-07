@@ -4,10 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.bishe.mapper.AppealMapper">
 
-    <resultMap id="BaseResultMap" type="com.example.bishe.model.entity.Appeal">
+    <resultMap id="BaseResultMap" type="com.example.bishe.mapper.AppealMapper">
             <result property="id" column="id" jdbcType="BIGINT"/>
             <result property="type" column="type" jdbcType="CHAR"/>
-            <result property="singleId" column="single_id" jdbcType="BIGINT"/>
+            <result property="single_id" column="single_id" jdbcType="BIGINT"/>
             <result property="reason" column="reason" jdbcType="VARCHAR"/>
             <result property="state" column="state" jdbcType="CHAR"/>
     </resultMap>
@@ -16,18 +16,4 @@
         id,type,single_id,
         reason,state
     </sql>
-    <select id="searchByCondition" parameterType="com.example.bishe.model.entity.Appeal" resultType="com.example.bishe.model.entity.Appeal">
-        select * from appeal
-        <where>
-            <if test="id != 0">
-                and id = #{id}
-            </if>
-            <if test="type != null">
-                and type = #{type}
-            </if>
-            <if test="singleId != 0">
-                and single_id = #{singleId}
-            </if>
-        </where>
-    </select>
 </mapper>
