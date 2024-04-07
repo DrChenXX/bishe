@@ -11,7 +11,7 @@
  Target Server Version : 80032
  File Encoding         : 65001
 
- Date: 06/04/2024 16:58:34
+ Date: 07/04/2024 10:05:46
 */
 
 SET NAMES utf8mb4;
@@ -87,10 +87,11 @@ CREATE TABLE `notice`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `pic`;
 CREATE TABLE `pic`  (
-                        `id` bigint(0) NOT NULL COMMENT '主键ID',
-                        `url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '照片地址',
-                        `worker_id` bigint(0) NOT NULL DEFAULT 0 COMMENT '工人ID',
-                        `time` datetime(0) NOT NULL DEFAULT 0 COMMENT '上传时间'
+                        `id` bigint(0) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+                        `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '照片地址',
+                        `worker_id` bigint(0) NOT NULL COMMENT '工人ID',
+                        `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
+                        PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -194,7 +195,7 @@ CREATE TABLE `user`  (
                          `status` tinyint(0) NOT NULL DEFAULT 1 COMMENT '账号是否可用，默认为1（可用）',
                          `deleted` tinyint(0) NOT NULL DEFAULT 0 COMMENT '是否删除(0-未删除，1-已删除)',
                          PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user

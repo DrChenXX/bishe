@@ -21,6 +21,6 @@
         id,username,password,
         avatar_url,phone,email,
         create_time,update_time,status,
-        delete
+        deleted
     </sql>
 </mapper>

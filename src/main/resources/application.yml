@@ -38,3 +38,16 @@ sa-token:
   token-style: uuid
   # 是否输出操作日志
   is-log: true
+oss:
+  # OSS 类型 (目前仅支持aliyun)
+  type: aliyun
+
+  aliyun:
+    # 服务Endpoint
+    endpoint: oss-cn-nanjing.aliyuncs.com
+    # 访问凭据
+    access-key-id: OSS_ACCESS_KEY_ID
+    # 凭据密钥
+    access-key-secret: OSS_ACCESS_KEY_SECRET
+    # 存储桶名称
+    bucket-name: cxy-bishe

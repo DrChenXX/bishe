@@ -5,26 +5,14 @@
 <mapper namespace="com.example.bishe.mapper.PicMapper">
 
     <resultMap id="BaseResultMap" type="com.example.bishe.model.entity.Pic">
-            <result property="id" column="id" jdbcType="BIGINT"/>
+            <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="url" column="url" jdbcType="VARCHAR"/>
             <result property="workerId" column="worker_id" jdbcType="BIGINT"/>
-            <result property="time" column="time" jdbcType="TIMESTAMP"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,url,worker_id,
-        time
+        create_time
     </sql>
-
-    <select id="searchByCondition" parameterType="com.example.bishe.model.entity.Pic" resultType="com.example.bishe.model.entity.Pic">
-        select * from pic
-        <where>
-            <if test="id != 0">
-                and id = #{id}
-            </if>
-            <if test="workerId != 0">
-                and worker_id = #{workerId}
-            </if>
-        </where>
-    </select>
 </mapper>
