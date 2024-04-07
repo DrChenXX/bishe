@@ -19,7 +19,6 @@ import static com.example.bishe.contnat.UserConstant.AVATAR_URL;
 import static com.example.bishe.contnat.UserConstant.PASSWORD;
 
 /**
-* @author talha
 * @description 针对表【user】的数据库操作Service实现
 * @createDate 2024-04-03 11:11:29
 */
