@@ -6,6 +6,7 @@ import com.example.bishe.model.entity.Task;
 import com.example.bishe.service.TaskService;
 import com.example.bishe.mapper.TaskMapper;
 import jakarta.annotation.Resource;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.text.DateFormat;
@@ -19,6 +20,7 @@ import java.util.List;
 * @createDate 2024-04-03 11:11:29
 */
 @Service
+@RequiredArgsConstructor
 public class TaskServiceImpl extends ServiceImpl<TaskMapper, Task>
     implements TaskService{
 
@@ -32,6 +34,12 @@ public class TaskServiceImpl extends ServiceImpl<TaskMapper, Task>
     @Override
     public List<Task> getTasklist() {
         //TODO 分页查询
+        return this.list();
+    }
+
+    @Override
+    public List<Task> getFreeTaskList() {
+        //todo 分页查询
         return this.list();
     }
 
@@ -55,11 +63,11 @@ public class TaskServiceImpl extends ServiceImpl<TaskMapper, Task>
         }
         task.setDeadline(date);
         task.setPos(addTaskForm.getPos());
-        task.setPic_id(Long.valueOf(addTaskForm.getPicId()));
+        task.setPicId(Long.valueOf(addTaskForm.getPicId()));
         task.setGps(addTaskForm.getGps());
         task.setMoney(Long.valueOf(addTaskForm.getMoney()));
         task.setState("0");
-        task.setWorker_id(0L);
+        task.setWorkerId(0L);
         if (addTaskForm.getNote() != null) {
             task.setNote(addTaskForm.getNote());
         }

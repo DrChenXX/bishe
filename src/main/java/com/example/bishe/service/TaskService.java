@@ -18,6 +18,8 @@ public interface TaskService extends IService<Task> {
      */
     List<Task> getTasklist();
 
+    List<Task> getFreeTaskList();
+
     int addTask(AddTaskForm addTaskForm);
 
     /**
