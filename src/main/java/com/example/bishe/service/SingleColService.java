@@ -1,5 +1,7 @@
 package com.example.bishe.service;
 
+import com.example.bishe.model.dto.AddColForm;
+import com.example.bishe.model.dto.RejectColForm;
 import com.example.bishe.model.entity.SingleCol;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -12,7 +14,11 @@ import java.util.List;
 public interface SingleColService extends IService<SingleCol> {
     List<SingleCol> getSingleColList();
 
-    int addSingleCol(SingleCol singleCol);
+    int addSingleCol(AddColForm addColForm);
+
+    int comfirmSingleCol(Long id);
+
+    int rejectSingleCol(RejectColForm rejectColForm);
 
     int deleteSingleCol(Long id);
 

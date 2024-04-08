@@ -59,7 +59,7 @@ public class SingleCol implements Serializable {
      * 时间
      */
     @TableField(value = "time")
-    private Date time;
+    private String time;
 
     /**
      * 天气
@@ -75,6 +75,12 @@ public class SingleCol implements Serializable {
 
     /**
      * 是否通过
+     * 0:待审核
+     * 1:通过
+     * 2:未通过
+     * 3：申诉中
+     * 4：申诉成功
+     * 5：申诉失败
      */
     @TableField(value = "state")
     private String state;
