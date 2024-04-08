@@ -7,6 +7,7 @@
     <resultMap id="BaseResultMap" type="com.example.bishe.model.entity.SingleCol">
             <result property="id" column="id" jdbcType="BIGINT"/>
             <result property="workerId" column="worker_id" jdbcType="BIGINT"/>
+            <result property="workId" column="work_id" jdbcType="BIGINT"/>
             <result property="picId" column="pic_id" jdbcType="BIGINT"/>
             <result property="age" column="age" jdbcType="INTEGER"/>
             <result property="circum" column="circum" jdbcType="INTEGER"/>
@@ -19,10 +20,10 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,worker_id,pic_id,
-        age,circum,towards,
-        time,weather,location,
-        state,note
+        id,worker_id,work_id,
+        pic_id,age,circum,
+        towards,time,weather,
+        location,state,note
     </sql>
 
     <select id="searchByCondition" parameterType="com.example.bishe.model.entity.SingleCol" resultType="com.example.bishe.model.entity.SingleCol">

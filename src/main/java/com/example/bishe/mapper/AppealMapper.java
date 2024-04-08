@@ -1,5 +1,6 @@
 package com.example.bishe.mapper;
 
+import com.example.bishe.model.dto.GetAppealByConditionForm;
 import com.example.bishe.model.entity.Appeal;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -10,7 +11,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity generator.domain.Appeal
 */
 public interface AppealMapper extends BaseMapper<Appeal> {
-
+    Appeal searchByCondition(GetAppealByConditionForm getAppealByConditionForm);
 }
 
 

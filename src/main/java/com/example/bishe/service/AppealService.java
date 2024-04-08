@@ -1,5 +1,8 @@
 package com.example.bishe.service;
 
+import com.example.bishe.model.dto.AddAppealForm;
+import com.example.bishe.model.dto.GetAppealByConditionForm;
+import com.example.bishe.model.dto.RejectAppealForm;
 import com.example.bishe.model.entity.Appeal;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -12,11 +15,17 @@ import java.util.List;
 public interface AppealService extends IService<Appeal> {
     List<Appeal> getAppealList();
 
-    int addAppeal(Appeal appeal);
+    int addAppeal(AddAppealForm addAppealForm);
+
+    int comfirmAppeal(Long id);
+
+    int rejecetAppeal(RejectAppealForm rejectAppealForm);
 
     int deleteAppeal(Long id);
 
     int updateAppeal(Appeal appeal);
 
     Appeal getAppealById(Long id);
+
+    Appeal getAppealByCondition(GetAppealByConditionForm getAppealByConditionForm);
 }

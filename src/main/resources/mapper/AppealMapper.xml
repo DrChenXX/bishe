@@ -16,4 +16,8 @@
         id,type,single_id,
         reason,state
     </sql>
+
+    <select id="searchByCondition" parameterType="com.example.bishe.model.dto.GetAppealByConditionForm" resultType="com.example.bishe.model.entity.Appeal">
+        select * from appeal where type = #{type} and single_id = #{id}
+    </select>
 </mapper>

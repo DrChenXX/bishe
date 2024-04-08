@@ -26,6 +26,12 @@ public class SingleCol implements Serializable {
     private Long workerId;
 
     /**
+     * 任务ID
+     */
+    @TableField(value = "work_id")
+    private Long workId;
+
+    /**
      * 照片ID
      */
     @TableField(value = "pic_id")

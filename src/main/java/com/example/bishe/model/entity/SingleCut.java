@@ -60,7 +60,8 @@ public class SingleCut implements Serializable {
      * 1：通过
      * 2：未通过
      * 3：申诉中
-     * 4：申诉失败
+     * 4：申诉成功
+     * 5：申诉失败
      */
     @TableField(value = "state")
     private String state;

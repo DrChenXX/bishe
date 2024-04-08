@@ -19,6 +19,8 @@ public class Appeal implements Serializable {
     private Long id;
 
     /**
+     * 1:cut
+     * 2:cul
      * 申诉任务类型
      */
     @TableField(value = "type")
