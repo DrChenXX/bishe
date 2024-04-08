@@ -1,5 +1,7 @@
 package com.example.bishe.service;
 
+import com.example.bishe.model.dto.AddCutForm;
+import com.example.bishe.model.dto.RejectCutForm;
 import com.example.bishe.model.entity.SingleCut;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -12,7 +14,11 @@ import java.util.List;
 public interface SingleCutService extends IService<SingleCut> {
     List<SingleCut> getSingleCutList();
 
-    int addSingleCut(SingleCut singleCut);
+    int addSingleCut(AddCutForm addCutForm);
+
+    int comfirmSingleCut(Long id);
+
+    int rejectSingleCut(RejectCutForm rejectCutForm);
 
     int deleteSingleCut(Long id);
 
