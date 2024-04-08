@@ -10,7 +10,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity generator.domain.Message
 */
 public interface MessageMapper extends BaseMapper<Message> {
-
+    public void deleteByNoticeId(String noticeId);
 }
 
 

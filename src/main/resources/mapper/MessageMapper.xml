@@ -15,6 +15,11 @@
         id,notice_id,worker_Id,
         read
     </sql>
+
+    <delete id="deleteByNoticeId" parameterType="String">
+        delete from message where notice_id = #{noticeId}
+    </delete>
+
     <select id="searchByCondition" parameterType="com.example.bishe.model.entity.Message" resultType="com.example.bishe.model.entity.Message">
         select * from message
         <where>

@@ -18,5 +18,7 @@ public interface MessageService extends IService<Message> {
 
     int updateMessage(Message message);
 
+    int readMessage(Long id);
+
     Message getMessageById(Long id);
 }

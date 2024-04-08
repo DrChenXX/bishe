@@ -3,6 +3,8 @@ package com.example.bishe.mapper;
 import com.example.bishe.model.entity.Worker;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import java.util.List;
+
 /**
 * @author talha
 * @description 针对表【worker】的数据库操作Mapper
@@ -10,7 +12,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @Entity generator.domain.Worker
 */
 public interface WorkerMapper extends BaseMapper<Worker> {
-
+    List<Worker> searchAll();
+    List<Worker> searchByFarmId(Worker worker);
 }
 
 

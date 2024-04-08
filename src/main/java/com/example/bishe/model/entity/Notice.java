@@ -20,6 +20,9 @@ public class Notice implements Serializable {
 
     /**
      * 通知类型
+     * 1:全体通知
+     * 2：某林场通知
+     * 3:指定用户通知
      */
     @TableField(value = "type")
     private String type;

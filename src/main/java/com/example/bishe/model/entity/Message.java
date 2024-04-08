@@ -32,6 +32,8 @@ public class Message implements Serializable {
 
     /**
      * 是否已读
+     * 0：未读
+     * 1：已读
      */
     @TableField(value = "read")
     private String read;

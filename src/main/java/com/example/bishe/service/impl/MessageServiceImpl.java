@@ -43,6 +43,13 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, Message>
     }
 
     @Override
+    public int readMessage(Long id) {
+        Message message = messageMapper.selectById(id);
+        message.setRead("1");
+        return messageMapper.updateById(message);
+    }
+
+    @Override
     public Message getMessageById(Long id) {
         return messageMapper.selectById(id);
     }

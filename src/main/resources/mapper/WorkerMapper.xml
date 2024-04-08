@@ -17,6 +17,15 @@
         bank,self_id
     </sql>
 
+    <select id="searchAll" resultType="com.example.bishe.model.entity.Worker">
+        select * from worker
+    </select>
+
+    <select id="searchByFarmId" parameterType="com.example.bishe.model.entity.Worker" resultType="com.example.bishe.model.entity.Worker">
+        select * from worker
+        where farm_id = #{farmId}
+    </select>
+
     <select id="searchByCondition" parameterType="com.example.bishe.model.entity.Worker" resultType="com.example.bishe.model.entity.Worker">
         select * from worker
         <where>
