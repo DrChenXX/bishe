@@ -1,5 +1,6 @@
 package com.example.bishe.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.bishe.mapper.ColWorkMapper;
 import com.example.bishe.model.dto.AddColForm;
@@ -35,6 +36,20 @@ public class SingleColServiceImpl extends ServiceImpl<SingleColMapper, SingleCol
     }
 
     @Override
+    public List<SingleCol> getUncomfirmedSingleColList() {
+        LambdaQueryWrapper<SingleCol> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(SingleCol::getState, 0);
+        return singleColMapper.selectList(queryWrapper);
+    }
+
+    @Override
+    public List<SingleCol> getSingleColListByWorkerId(Long workerId) {
+        LambdaQueryWrapper<SingleCol> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(SingleCol::getWorkerId, workerId);
+        return singleColMapper.selectList(queryWrapper);
+    }
+
+    @Override
     public int addSingleCol(AddColForm addColForm) {
         SingleCol singleCol = new SingleCol();
         singleCol.setWorkerId(Long.valueOf(addColForm.getWorkerId()));
@@ -46,14 +61,14 @@ public class SingleColServiceImpl extends ServiceImpl<SingleColMapper, SingleCol
         singleCol.setTime(addColForm.getTime());
         singleCol.setWeather(addColForm.getWeather());
         singleCol.setLocation(addColForm.getLocation());
-        singleCol.setState("0");
+        singleCol.setState(0);
         return singleColMapper.insert(singleCol);
     }
 
     @Override
     public int comfirmSingleCol(Long id) {
         SingleCol singleCol = singleColMapper.selectById(id);
-        singleCol.setState("1");
+        singleCol.setState(1);
         ColWork colWork = colWorkMapper.selectById(singleCol.getWorkId());
         colWork.setNumber(colWork.getNumber() + 1);
         colWorkMapper.updateById(colWork);
@@ -63,7 +78,7 @@ public class SingleColServiceImpl extends ServiceImpl<SingleColMapper, SingleCol
     @Override
     public int rejectSingleCol(RejectColForm rejectColForm) {
         SingleCol singleCol = singleColMapper.selectById(Long.valueOf(rejectColForm.getSingleColId()));
-        singleCol.setState("2");
+        singleCol.setState(2);
         singleCol.setNote(rejectColForm.getReason());
         return singleColMapper.updateById(singleCol);
     }
@@ -72,7 +87,7 @@ public class SingleColServiceImpl extends ServiceImpl<SingleColMapper, SingleCol
     @Override
     public int deleteSingleCol(Long id) {
         SingleCol singleCol = singleColMapper.selectById(id);
-        if (singleCol.getState().equals("1")) {
+        if (singleCol.getState() == 1) {
             ColWork colWork = colWorkMapper.selectById(singleCol.getWorkId());
             colWork.setNumber(colWork.getNumber() - 1);
             colWorkMapper.updateById(colWork);

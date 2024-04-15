@@ -14,6 +14,10 @@ import java.util.List;
 public interface SingleColService extends IService<SingleCol> {
     List<SingleCol> getSingleColList();
 
+    List<SingleCol> getUncomfirmedSingleColList();
+
+    List<SingleCol> getSingleColListByWorkerId(Long workerId);
+
     int addSingleCol(AddColForm addColForm);
 
     int comfirmSingleCol(Long id);

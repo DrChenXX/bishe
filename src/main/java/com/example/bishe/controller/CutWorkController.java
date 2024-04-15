@@ -28,17 +28,17 @@ public class CutWorkController {
     @GetMapping("/freeTaskList")
     public SaResult getFreeTask() {
         List<CutTask> cutTaskList = cutTaskService.getFreeTaskList();
-        return SaResult.ok().setData(cutTaskList);
+        return SaResult.data(cutTaskList);
     }
 
     /**
      * 根据工人id获取所有任务列表
      * @return 任务列表
      */
-    @GetMapping("/list")
+    @GetMapping("/listByWorkerId")
     public SaResult getWorkListByWorkerId(Long workerId) {
         List<CutWork> cutWorkList = cutWorkService.getWorkListByWorkerId(workerId);
-        return SaResult.ok().setData(cutWorkList);
+        return SaResult.data(cutWorkList);
     }
 
     /**

@@ -83,7 +83,7 @@ public class SingleCol implements Serializable {
      * 5：申诉失败
      */
     @TableField(value = "state")
-    private String state;
+    private Integer state;
 
     /**
      * 备注
