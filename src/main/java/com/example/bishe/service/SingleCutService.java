@@ -25,4 +25,12 @@ public interface SingleCutService extends IService<SingleCut> {
     int updateSingleCut(SingleCut singleCut);
 
     SingleCut getSingleCutById(Long id);
+
+    List<SingleCut> getUncomfirmedSingleCutList();
+
+    List<SingleCut> getSingleCutByWorkerId(Long workerId);
+
+    List<SingleCut> getSingleCutByWorkId(Long workId);
+
+    List<SingleCut> getFailedSingleCutListByWorkerId(Long workerId);
 }

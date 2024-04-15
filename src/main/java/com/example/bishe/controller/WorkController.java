@@ -68,6 +68,16 @@ public class WorkController {
         return SaResult.ok().setMsg("审核不通过");
     }
 
+    @PostMapping("/finish")
+    public SaResult finishWork(@RequestBody Long id) {
+        int finished = workService.submitWork(id);
+        if (finished >= 1) {
+            return SaResult.ok().setMsg("完成任务成功");
+        }
+        return SaResult.error("完成任务失败");
+    }
+
+
     @GetMapping("/getWorkById")
     public SaResult getWorkById(@RequestBody Long id) {
         Work work = workService.getWorkById(id);

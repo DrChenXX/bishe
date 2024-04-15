@@ -21,6 +21,8 @@ public interface WorkService extends IService<Work> {
     int deleteWork(Long id);
     
 
+    int submitWork(Long id);
+
     Work getWorkById(Long id);
 
     int submit(Long workId);

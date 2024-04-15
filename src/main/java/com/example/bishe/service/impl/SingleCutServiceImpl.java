@@ -87,6 +87,39 @@ public class SingleCutServiceImpl extends ServiceImpl<SingleCutMapper, SingleCut
     public SingleCut getSingleCutById(Long id) {
         return singleCutMapper.selectById(id);
     }
+
+    @Override
+    public List<SingleCut> getUncomfirmedSingleCutList() {
+        SingleCut singleCut = new SingleCut();
+        singleCut.setState("0");
+        return singleCutMapper.searchByCondition(singleCut);
+    }
+
+    @Override
+    public List<SingleCut> getSingleCutByWorkerId(Long workerId) {
+        SingleCut singleCut = new SingleCut();
+        singleCut.setWorkerId(workerId);
+        return singleCutMapper.searchByCondition(singleCut);
+    }
+
+    @Override
+    public List<SingleCut> getSingleCutByWorkId(Long workId) {
+        SingleCut singleCut = new SingleCut();
+        singleCut.setWorkId(workId);
+        return singleCutMapper.searchByCondition(singleCut);
+    }
+
+    @Override
+    public List<SingleCut> getFailedSingleCutListByWorkerId(Long workerId) {
+        SingleCut singleCut = new SingleCut();
+        singleCut.setWorkerId(workerId);
+        singleCut.setState("2");
+        List<SingleCut> singleCutList = singleCutMapper.searchByCondition(singleCut);
+        singleCut.setState("5");
+        singleCutList.addAll(singleCutMapper.searchByCondition(singleCut));
+        return singleCutMapper.searchByCondition(singleCut);
+    }
+
 }
 
 

@@ -27,7 +27,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
 /**
-* @author talha
 * @description 针对表【pic】的数据库操作Service实现
 * @createDate 2024-04-03 11:11:29
 */

@@ -21,16 +21,17 @@
         pic1_id,pic2_id,pic3_id,
         number,state,note
     </sql>
+    
     <select id="searchByCondition" parameterType="com.example.bishe.model.entity.SingleCut" resultType="com.example.bishe.model.entity.SingleCut">
         select * from single_cut
         <where>
-            <if test="id != 0">
+            <if test="id != null">
                 and id = #{id}
             </if>
-            <if test="workerId != 0">
+            <if test="workerId != null">
                 and worker_id = #{workerId}
             </if>
-            <if test="workId != 0">
+            <if test="workId != null">
                 and work_id = #{workId}
             </if>
             <if test="state != null">

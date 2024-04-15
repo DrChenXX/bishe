@@ -78,6 +78,14 @@ public class WorkServiceImpl extends ServiceImpl<WorkMapper, Work>
 
 
     @Override
+    public int submitWork(Long id) {
+        Work work = workMapper.selectById(id);
+        //todo
+        int nownum = work.getNumber();
+        return 0;
+    }
+
+    @Override
     public Work getWorkById(Long id) {
         return workMapper.selectById(id);
     }

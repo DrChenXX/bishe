@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @description OSS配置类
- * @author talhar
  */
 @ConfigurationProperties(prefix = "aliyun.oss")
 @Configuration

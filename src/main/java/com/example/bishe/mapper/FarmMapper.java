@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.bishe.model.entity.Farm;
 
 /**
- * @author talha
  * @description 针对表【farm】的数据库操作Mapper
  * @createDate 2024-04-06 15:55:16
  * @Entity generator.domain.Farm

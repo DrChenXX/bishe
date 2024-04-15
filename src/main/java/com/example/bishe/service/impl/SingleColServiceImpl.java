@@ -55,7 +55,7 @@ public class SingleColServiceImpl extends ServiceImpl<SingleColMapper, SingleCol
         SingleCol singleCol = singleColMapper.selectById(id);
         singleCol.setState("1");
         Work work = workMapper.selectById(singleCol.getWorkId());
-        work.setNownum(work.getNownum() + 1);
+        //todo
         workMapper.updateById(work);
         return singleColMapper.updateById(singleCol);
     }
@@ -74,7 +74,7 @@ public class SingleColServiceImpl extends ServiceImpl<SingleColMapper, SingleCol
         SingleCol singleCol = singleColMapper.selectById(id);
         if (singleCol.getState().equals("1")) {
             Work work = workMapper.selectById(singleCol.getWorkId());
-            work.setNownum(work.getNownum() - 1);
+            //todo
             workMapper.updateById(work);
         }
         return singleColMapper.deleteById(id);

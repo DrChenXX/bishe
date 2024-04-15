@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * 登录鉴权模块
- * @author talha
  */
 @Tag(name = "登录鉴权模块", description = "登录注销")
 @RestController

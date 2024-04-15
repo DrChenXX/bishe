@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * @author talha
  * @description 针对表【farm】的数据库操作Service实现
  * @createDate 2024-04-06 15:55:16
  */
