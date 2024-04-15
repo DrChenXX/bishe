@@ -74,7 +74,7 @@ public class AppealServiceImpl extends ServiceImpl<AppealMapper, Appeal>
             singleCut.setState("4");
             singleCutMapper.updateById(singleCut);
             Work work = workMapper.selectById(singleCut.getWorkId());
-            work.setNownum(work.getNownum() + singleCut.getNumber());
+            //todo
             workMapper.updateById(work);
         }
         if (appeal.getType().equals("2")) {
@@ -82,7 +82,7 @@ public class AppealServiceImpl extends ServiceImpl<AppealMapper, Appeal>
             singleCol.setState("4");
             singleCulMapper.updateById(singleCol);
             Work work = workMapper.selectById(singleCol.getWorkId());
-            work.setNownum(work.getNownum() + 1);
+            //todo
             workMapper.updateById(work);
         }
         return appealMapper.updateById(appeal);

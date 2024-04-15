@@ -52,8 +52,7 @@ public class SingleCutServiceImpl extends ServiceImpl<SingleCutMapper, SingleCut
         SingleCut singleCut = singleCutMapper.selectById(id);
         singleCut.setState("1");
         Work work = workMapper.selectById(singleCut.getWorkId());
-        int nownum = work.getNownum();
-        work.setNownum(nownum + singleCut.getNumber());
+        //todo
         workMapper.updateById(work);
         return singleCutMapper.updateById(singleCut);
     }
@@ -71,8 +70,7 @@ public class SingleCutServiceImpl extends ServiceImpl<SingleCutMapper, SingleCut
         SingleCut singleCut = singleCutMapper.selectById(id);
         if (singleCut.getState().equals("1")) {
             Work work = workMapper.selectById(singleCut.getWorkId());
-            int nownum = work.getNownum();
-            work.setNownum(nownum - singleCut.getNumber());
+            //todo
             workMapper.updateById(work);
         }
         return singleCutMapper.deleteById(id);
