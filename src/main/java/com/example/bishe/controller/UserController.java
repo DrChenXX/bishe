@@ -1,7 +1,7 @@
 package com.example.bishe.controller;
 
 import cn.dev33.satoken.util.SaResult;
-import com.example.bishe.model.dto.AddUserForm;
+import com.example.bishe.model.dto.AddUpdateUserForm;
 import com.example.bishe.model.dto.UpdatePasswordRequest;
 import com.example.bishe.model.entity.User;
 import com.example.bishe.service.UserService;
@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @PostMapping("/add")
-    public SaResult addUser(@RequestBody AddUserForm addUserForm) {
+    public SaResult addUser(@RequestBody AddUpdateUserForm addUserForm) {
         int added = userService.addUser(addUserForm);
         if (added >= 1) {
             return SaResult.ok().setMsg("用户添加成功");
@@ -39,8 +39,8 @@ public class UserController {
     }
 
     @PostMapping("/update")
-    public SaResult updateUser(@RequestBody User user) {
-        int updated = userService.updateUser(user);
+    public SaResult updateUser(Long userId, @RequestBody AddUpdateUserForm updateUserForm) {
+        int updated = userService.updateUser(userId, updateUserForm);
         if (updated >= 1) {
             return SaResult.ok().setMsg("用户更新成功");
         }

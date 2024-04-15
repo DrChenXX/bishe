@@ -42,7 +42,7 @@ public class FarmController {
     }
     // 修改林场信息
     @PostMapping("/update")
-    public SaResult updateFarm(Long farmId, AddUpdateFarmForm addUpdateFarmForm) {
+    public SaResult updateFarm(Long farmId,@RequestBody AddUpdateFarmForm addUpdateFarmForm) {
         int updated = farmService.updateFarm(farmId, addUpdateFarmForm);
         if (updated >= 1) {
             return SaResult.ok("修改成功");

@@ -64,7 +64,7 @@ public class TaskController {
     }
 
     @PostMapping("/publish")
-    public SaResult publishTask(@RequestBody Long id) {
+    public SaResult publishTask(Long id) {
         int published = taskService.publishTask(id);
         if (published >= 1) {
             return SaResult.ok().setMsg("发布任务成功");

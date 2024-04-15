@@ -4,7 +4,7 @@ import cn.dev33.satoken.secure.SaSecureUtil;
 import cn.dev33.satoken.stp.StpUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.bishe.model.dto.AddUserForm;
+import com.example.bishe.model.dto.AddUpdateUserForm;
 import com.example.bishe.model.dto.UpdatePasswordRequest;
 import com.example.bishe.model.entity.User;
 import com.example.bishe.service.UserService;
@@ -83,17 +83,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     /**
      * 添加用户
      *
-     * @param addUserForm 用户添加表单
+     * @param addUpdateUserForm 用户添加表单
      * @return true/false
      */
     @Override
-    public int addUser(AddUserForm addUserForm) {
+    public int addUser(AddUpdateUserForm addUpdateUserForm) {
         User user = new User();
-        user.setUsername(addUserForm.getUsername());
+        user.setUsername(addUpdateUserForm.getUsername());
         user.setPassword(SaSecureUtil.md5(PASSWORD));
-        user.setPhone(addUserForm.getPhone());
-        if (addUserForm.getEmail() != null) {
-            user.setEmail(addUserForm.getEmail());
+        user.setPhone(addUpdateUserForm.getPhone());
+        if (addUpdateUserForm.getEmail() != null) {
+            user.setEmail(addUpdateUserForm.getEmail());
         }
         user.setAvatarUrl(AVATAR_URL);
         return userMapper.insert(user);
@@ -109,10 +109,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     /**
      * 更新用户
      *
-     * @param user 用户实体
+     * @param updateUserForm 用户实体
      */
     @Override
-    public int updateUser(User user) {
+    public int updateUser(Long userId, AddUpdateUserForm updateUserForm) {
+        User user = userMapper.selectById(userId);
+        if (updateUserForm.getUsername() != null) {
+            user.setUsername(updateUserForm.getUsername());
+        }
+        if (updateUserForm.getPhone() != null) {
+            user.setPhone(updateUserForm.getPhone());
+        }
+        if (updateUserForm.getEmail() != null) {
+            user.setEmail(updateUserForm.getEmail());
+        }
         return userMapper.updateById(user);
     }
 

@@ -1,9 +1,12 @@
 package com.example.bishe.service;
 
+import com.alipay.api.AlipayApiException;
 import com.example.bishe.model.dto.AddWorkForm;
 import com.example.bishe.model.entity.Work;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -13,11 +16,16 @@ import java.util.List;
 public interface WorkService extends IService<Work> {
     List<Work> getWorkListByWorkerId();
 
-    int addWork(AddWorkForm addWorkForm);
+    int addWork(Long taskId);
 
     int deleteWork(Long id);
-
-    int updateWork(Work work);
+    
 
     Work getWorkById(Long id);
+
+    int submit(Long workId);
+
+    int pass(Long workId);
+
+    int fail(Long workId);
 }

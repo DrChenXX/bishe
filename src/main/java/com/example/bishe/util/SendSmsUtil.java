@@ -20,7 +20,7 @@ public class SendSmsUtil {
     private SendSmsConfig sendSmsConfig;
 
 
-    public void SendSms(String phoneNumber, String num) throws ExecutionException, InterruptedException {
+    public void SendSms(String phoneNumbers, String num) throws ExecutionException, InterruptedException {
         StaticCredentialProvider provider = StaticCredentialProvider.create(Credential.builder()
                 .accessKeyId(sendSmsConfig.getAccoessKeyId())
                 .accessKeySecret(sendSmsConfig.getAccoessKeySecret())
@@ -34,7 +34,7 @@ public class SendSmsUtil {
                 )
                 .build();
         SendSmsRequest sendSmsRequest = SendSmsRequest.builder()
-                .phoneNumbers(phoneNumber)
+                .phoneNumbers(phoneNumbers)
                 .signName(sendSmsConfig.getSignName())
                 .templateCode(sendSmsConfig.getTemplateCode())
                 .templateParam("{\"num\":\"" + num + "\"}")

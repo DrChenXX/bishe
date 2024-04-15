@@ -20,7 +20,13 @@ public class User implements Serializable {
     private Long id;
 
     /**
-     * 用户名
+     * 账号
+     */
+    @TableField(value = "user_account")
+    private String userAccount;
+
+    /**
+     * 用户名称
      */
     @TableField(value = "username")
     private String username;
@@ -30,6 +36,12 @@ public class User implements Serializable {
      */
     @TableField(value = "password")
     private String password;
+
+    /**
+     * 员工编号
+     */
+    @TableField(value = "worker_number")
+    private String workerNumber;
 
     /**
      * 头像地址
@@ -48,6 +60,30 @@ public class User implements Serializable {
      */
     @TableField(value = "email")
     private String email;
+
+    /**
+     * 身份证号
+     */
+    @TableField(value = "id_number")
+    private String idNumber;
+
+    /**
+     * 支付宝id
+     */
+    @TableField(value = "alipay_id")
+    private String alipayId;
+
+    /**
+     * 支付宝账号名
+     */
+    @TableField(value = "alipay_name")
+    private String alipayName;
+
+    /**
+     * 类型（工人或管理员）
+     */
+    @TableField(value = "type")
+    private String type;
 
     /**
      * 创建时间
@@ -71,7 +107,6 @@ public class User implements Serializable {
      * 是否删除(0-未删除，1-已删除)
      */
     @TableField(value = "deleted")
-    @TableLogic
     private Integer deleted;
 
     @TableField(exist = false)

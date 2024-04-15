@@ -1,6 +1,6 @@
 package com.example.bishe.service;
 
-import com.example.bishe.model.dto.AddUserForm;
+import com.example.bishe.model.dto.AddUpdateUserForm;
 import com.example.bishe.model.dto.UpdatePasswordRequest;
 import com.example.bishe.model.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -38,10 +38,10 @@ public interface UserService extends IService<User> {
 
     /**
      * 添加用户
-     * @param addUserForm 用户添加表单
+     * @param addUpdateUserForm 用户添加表单
      * @return true/false
      */
-    int addUser(AddUserForm addUserForm);
+    int addUser(AddUpdateUserForm addUpdateUserForm);
 
     /**
      * 删除用户
@@ -51,9 +51,9 @@ public interface UserService extends IService<User> {
 
     /**
      * 更新用户
-     * @param user 用户实体
+     * @param updateUserForm 用户更新实体
      */
-    int updateUser(User user);
+    int updateUser(Long userId, AddUpdateUserForm updateUserForm);
 
     /**
      * 根据用户ID查询用户

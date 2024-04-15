@@ -5,43 +5,24 @@
 <mapper namespace="com.example.bishe.mapper.TaskMapper">
 
     <resultMap id="BaseResultMap" type="com.example.bishe.model.entity.Task">
-            <result property="id" column="id" jdbcType="BIGINT"/>
-            <result property="farmId" column="farm_id" jdbcType="BIGINT"/>
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="taskNumber" column="task_number" jdbcType="VARCHAR"/>
             <result property="type" column="type" jdbcType="VARCHAR"/>
-            <result property="number" column="number" jdbcType="INTEGER"/>
+            <result property="farmName" column="farm_name" jdbcType="VARCHAR"/>
+            <result property="money" column="money" jdbcType="DECIMAL"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
             <result property="deadline" column="deadline" jdbcType="TIMESTAMP"/>
-            <result property="pos" column="pos" jdbcType="VARCHAR"/>
-            <result property="picId" column="pic_id" jdbcType="BIGINT"/>
-            <result property="gps" column="gps" jdbcType="VARCHAR"/>
-            <result property="money" column="money" jdbcType="BIGINT"/>
-            <result property="state" column="state" jdbcType="VARCHAR"/>
+            <result property="state" column="state" jdbcType="INTEGER"/>
+            <result property="description" column="description" jdbcType="VARCHAR"/>
             <result property="workerId" column="worker_id" jdbcType="BIGINT"/>
-            <result property="note" column="note" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,farm_id,type,
-        number,deadline,pos,
-        pic_id,gps,money,
-        state,worker_id,note
+        id,task_number,type,
+        farm_name,money,name,
+        deadline,state,description,
+        worker_id,create_time,update_time
     </sql>
-
-    <select id="selectByCondition" parameterType="com.example.bishe.model.entity.Task" resultType="com.example.bishe.model.entity.Task">
-        select * from task
-        <where>
-            <if test="farmId != 0">
-                and farm_id = #{farmId}
-            </if>
-            <if test="type != null">
-                and type = #{type}
-            </if>
-            <if test="state != null">
-                and state = #{state}
-            </if>
-            <if test="workerId != 0">
-                and worker_id = #{workerId}
-            </if>
-        </where>
-
-    </select>
 </mapper>

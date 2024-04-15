@@ -5,27 +5,26 @@
 <mapper namespace="com.example.bishe.mapper.SalaryMapper">
 
     <resultMap id="BaseResultMap" type="com.example.bishe.model.entity.Salary">
-            <result property="id" column="id" jdbcType="BIGINT"/>
+            <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="workerId" column="worker_id" jdbcType="BIGINT"/>
-            <result property="time" column="time" jdbcType="DATE"/>
-            <result property="number" column="number" jdbcType="BIGINT"/>
-            <result property="note" column="note" jdbcType="VARCHAR"/>
+            <result property="taskId" column="task_id" jdbcType="BIGINT"/>
+            <result property="workerNumber" column="worker_number" jdbcType="VARCHAR"/>
+            <result property="workerName" column="worker_name" jdbcType="VARCHAR"/>
+            <result property="taskNumber" column="task_number" jdbcType="VARCHAR"/>
+            <result property="type" column="type" jdbcType="VARCHAR"/>
+            <result property="state" column="state" jdbcType="INTEGER"/>
+            <result property="number" column="number" jdbcType="INTEGER"/>
+            <result property="money" column="money" jdbcType="DECIMAL"/>
+            <result property="orderId" column="order_id" jdbcType="VARCHAR"/>
+            <result property="payFundOrderId" column="pay_fund_order_id" jdbcType="VARCHAR"/>
+            <result property="transDate" column="trans_date" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,worker_id,time,
-        number,note
+        id,worker_id,task_id,
+        worker_number,worker_name,task_number,
+        type,state,number,
+        money,order_id,pay_fund_order_id,
+        trans_date
     </sql>
-
-    <select id="searchByCondition" parameterType="com.example.bishe.model.entity.Salary" resultType="com.example.bishe.model.entity.Salary">
-        select * from salary
-        <where>
-            <if test="id != 0">
-                and id = #{id}
-            </if>
-            <if test="workerId != 0">
-                and worker_id = #{workerId}
-            </if>
-        </where>
-    </select>
 </mapper>

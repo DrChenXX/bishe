@@ -1,8 +1,11 @@
 package com.example.bishe.model.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import lombok.Data;
 
@@ -16,14 +19,14 @@ public class Task implements Serializable {
     /**
      * 主键ID
      */
-    @TableField(value = "id")
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     /**
-     * 所在林场ID
+     * 任务编号
      */
-    @TableField(value = "farm_id")
-    private Long farmId;
+    @TableField(value = "task_number")
+    private String taskNumber;
 
     /**
      * 任务类型
@@ -32,10 +35,22 @@ public class Task implements Serializable {
     private String type;
 
     /**
-     * 需求数量
+     * 任务地点（林场名）
      */
-    @TableField(value = "number")
-    private Integer number;
+    @TableField(value = "farm_name")
+    private String farmName;
+
+    /**
+     * 任务工资
+     */
+    @TableField(value = "money")
+    private BigDecimal money;
+
+    /**
+     * 负责人姓名
+     */
+    @TableField(value = "name")
+    private String name;
 
     /**
      * 截止时间
@@ -44,34 +59,16 @@ public class Task implements Serializable {
     private Date deadline;
 
     /**
-     * 任务地点
-     */
-    @TableField(value = "pos")
-    private String pos;
-
-    /**
-     * 地点照片
-     */
-    @TableField(value = "pic_id")
-    private Long picId;
-
-    /**
-     * GPS定位
-     */
-    @TableField(value = "gps")
-    private String gps;
-
-    /**
-     * 任务工资
-     */
-    @TableField(value = "money")
-    private Long money;
-
-    /**
      * 任务状态
      */
     @TableField(value = "state")
-    private String state;
+    private Integer state;
+
+    /**
+     * 描述
+     */
+    @TableField(value = "description")
+    private String description;
 
     /**
      * 领取ID
@@ -80,10 +77,16 @@ public class Task implements Serializable {
     private Long workerId;
 
     /**
-     * 备注
+     * 创建时间
      */
-    @TableField(value = "note")
-    private String note;
+    @TableField(value = "create_time")
+    private Date createTime;
+
+    /**
+     * 更新时间
+     */
+    @TableField(value = "update_time")
+    private Date updateTime;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

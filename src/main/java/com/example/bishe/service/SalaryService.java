@@ -2,7 +2,10 @@ package com.example.bishe.service;
 
 import com.example.bishe.model.entity.Salary;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.bishe.model.entity.Work;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -12,11 +15,15 @@ import java.util.List;
 public interface SalaryService extends IService<Salary> {
     List<Salary> getSalryList();
 
-    int addSalary(Salary salary);
+    int generate(Long workId, BigDecimal money);
 
     int deleteSalary(Long id);
 
     int updateSalary(Salary salary);
 
     Salary getSalaryById(Long id);
+
+    int confirm(Long salaryId);
+
+    String trans(Long workId);
 }
