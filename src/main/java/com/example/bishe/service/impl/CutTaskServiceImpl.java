@@ -25,7 +25,7 @@ import java.util.concurrent.ExecutionException;
 */
 @Service
 @RequiredArgsConstructor
-public class CutCutTaskServiceImpl extends ServiceImpl<TaskMapper, CutTask>
+public class CutTaskServiceImpl extends ServiceImpl<TaskMapper, CutTask>
     implements CutTaskService {
 
     @Resource
