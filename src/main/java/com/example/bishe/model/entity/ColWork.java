@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import lombok.Data;
 
@@ -55,7 +56,7 @@ public class ColWork implements Serializable {
      * 任务工资
      */
     @TableField(value = "money")
-    private Integer money;
+    private BigDecimal money;
 
     /**
      * 任务描述
