@@ -1,7 +1,7 @@
 package com.example.bishe.service;
 
-import com.example.bishe.model.entity.ColWork;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.bishe.model.entity.ColWork;
 
 import java.util.List;
 
@@ -10,11 +10,15 @@ import java.util.List;
 * @createDate 2024-04-15 15:15:47
 */
 public interface ColWorkService extends IService<ColWork> {
-    List<ColWork> getColWorkListByWorkerId();
+    List<ColWork> getColWorkListByWorkerId(Long workerId);
 
     int addWork(Long taskId);
 
     int deleteWork(Long Id);
+
+    int updateWork(ColWork colWork);
+
+    int addOnePic(Long colWorkId);
 
     ColWork getColWorkById(Long Id);
 

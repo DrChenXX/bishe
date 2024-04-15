@@ -1,6 +1,6 @@
 package com.example.bishe.service;
 
-import com.example.bishe.model.dto.AddCulTaskForm;
+import com.example.bishe.model.dto.AddUpdateColTaskForm;
 import com.example.bishe.model.entity.ColTask;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -15,11 +15,11 @@ public interface ColTaskService extends IService<ColTask> {
 
     List<ColTask> getFreeColTasks();
 
-    int addColTask(AddCulTaskForm addCulTaskForm);
+    int addColTask(AddUpdateColTaskForm addUpdateColTaskForm);
 
     int deleteColTask(Long id);
 
-    int updateColTask(ColTask colTask);
+    int updateColTask(Long taskId, AddUpdateColTaskForm addUpdateColTaskForm);
 
     ColTask getColTaskById(Long id);
 

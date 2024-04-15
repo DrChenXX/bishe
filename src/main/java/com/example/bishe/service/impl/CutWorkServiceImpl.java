@@ -57,7 +57,7 @@ public class CutWorkServiceImpl extends ServiceImpl<CutWorkMapper, CutWork>
      */
     @Override
     public int addWork(Long taskId ) {
-        Long workerId = Long.valueOf(String.valueOf(StpUtil.getLoginId())).longValue();
+        Long workerId = Long.valueOf(String.valueOf(StpUtil.getLoginId()));
         CutTask cutTask = cutTaskService.getTaskById(taskId);
         cutTask.setState(1);
         cutTask.setWorkerId(workerId);

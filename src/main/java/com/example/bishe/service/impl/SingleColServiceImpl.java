@@ -1,10 +1,10 @@
 package com.example.bishe.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.bishe.mapper.CutWorkMapper;
+import com.example.bishe.mapper.ColWorkMapper;
 import com.example.bishe.model.dto.AddColForm;
 import com.example.bishe.model.dto.RejectColForm;
-import com.example.bishe.model.entity.CutWork;
+import com.example.bishe.model.entity.ColWork;
 import com.example.bishe.model.entity.SingleCol;
 import com.example.bishe.service.SingleColService;
 import com.example.bishe.mapper.SingleColMapper;
@@ -27,7 +27,7 @@ public class SingleColServiceImpl extends ServiceImpl<SingleColMapper, SingleCol
     private SingleColMapper singleColMapper;
 
     @Resource
-    private CutWorkMapper cutWorkMapper;
+    private ColWorkMapper colWorkMapper;
 
     @Override
     public List<SingleCol> getSingleColList() {
@@ -54,9 +54,9 @@ public class SingleColServiceImpl extends ServiceImpl<SingleColMapper, SingleCol
     public int comfirmSingleCol(Long id) {
         SingleCol singleCol = singleColMapper.selectById(id);
         singleCol.setState("1");
-        CutWork cutWork = cutWorkMapper.selectById(singleCol.getWorkId());
-        //work.setNownum(work.getNownum() + 1);
-        cutWorkMapper.updateById(cutWork);
+        ColWork colWork = colWorkMapper.selectById(singleCol.getWorkId());
+        colWork.setNumber(colWork.getNumber() + 1);
+        colWorkMapper.updateById(colWork);
         return singleColMapper.updateById(singleCol);
     }
 
@@ -73,9 +73,9 @@ public class SingleColServiceImpl extends ServiceImpl<SingleColMapper, SingleCol
     public int deleteSingleCol(Long id) {
         SingleCol singleCol = singleColMapper.selectById(id);
         if (singleCol.getState().equals("1")) {
-            CutWork cutWork = cutWorkMapper.selectById(singleCol.getWorkId());
-            //work.setNownum(work.getNownum() - 1);
-            cutWorkMapper.updateById(cutWork);
+            ColWork colWork = colWorkMapper.selectById(singleCol.getWorkId());
+            colWork.setNumber(colWork.getNumber() - 1);
+            colWorkMapper.updateById(colWork);
         }
         return singleColMapper.deleteById(id);
     }

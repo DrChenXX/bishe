@@ -13,6 +13,7 @@
             <result property="state" column="state" jdbcType="INTEGER"/>
             <result property="money" column="money" jdbcType="DECIMAL"/>
             <result property="description" column="description" jdbcType="VARCHAR"/>
+            <result property="need" column="need" jdbcType="INTEGER"/>
             <result property="number" column="number" jdbcType="INTEGER"/>
             <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
             <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
@@ -21,7 +22,7 @@
     <sql id="Base_Column_List">
         id,worker_id,task_id,
         task_number,deadline,state,
-        money,description,number,
-        create_time,update_time
+        money,description,need,
+        number,create_time,update_time
     </sql>
 </mapper>

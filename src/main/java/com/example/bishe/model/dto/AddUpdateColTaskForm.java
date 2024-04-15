@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
-public class AddCulTaskForm implements java.io.Serializable {
+public class AddUpdateColTaskForm implements java.io.Serializable {
 
     /**
      * 需求数量

@@ -55,7 +55,7 @@ public class CutTaskServiceImpl extends ServiceImpl<CutTaskMapper, CutTask>
     @Override
     public List<CutTask> getFreeTaskList() {
         LambdaQueryWrapper<CutTask> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(CutTask::getState, 0);
+        queryWrapper.eq(CutTask::getState, 1);
         return cutTaskMapper.selectList(queryWrapper);
     }
 
@@ -95,7 +95,7 @@ public class CutTaskServiceImpl extends ServiceImpl<CutTaskMapper, CutTask>
     @Override
     public int updateTask(Long taskId, AddUpdateCutTaskForm addUpdateCutTaskForm) {
         CutTask cutTask = cutTaskMapper.selectById(taskId);
-        if (cutTask.getState() != 0) {
+        if (cutTask.getState() != 1) {
             //任务已发布，不支持修改或删除
             return 0;
         } else {
@@ -116,7 +116,6 @@ public class CutTaskServiceImpl extends ServiceImpl<CutTaskMapper, CutTask>
             }
             return cutTaskMapper.updateById(cutTask);
         }
-
     }
 
     /**
@@ -127,7 +126,7 @@ public class CutTaskServiceImpl extends ServiceImpl<CutTaskMapper, CutTask>
     @Override
     public int deleteTask(Long id) {
         CutTask cutTask = cutTaskMapper.selectById(id);
-        if (cutTask.getState() != 0) {
+        if (cutTask.getState() != 1) {
             //任务已发布，不支持修改或删除
             return 0;
         }

@@ -1,17 +1,19 @@
 package com.example.bishe.service.impl;
 
 import cn.dev33.satoken.stp.StpUtil;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.bishe.mapper.ColTaskMapper;
+import com.example.bishe.mapper.ColWorkMapper;
 import com.example.bishe.model.entity.ColTask;
 import com.example.bishe.model.entity.ColWork;
+import com.example.bishe.model.entity.CutWork;
 import com.example.bishe.service.ColTaskService;
 import com.example.bishe.service.ColWorkService;
-import com.example.bishe.mapper.ColWorkMapper;
 import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,13 +32,15 @@ public class ColWorkServiceImpl extends ServiceImpl<ColWorkMapper, ColWork>
     private ColTaskService colTaskService;
 
     @Override
-    public List<ColWork> getColWorkListByWorkerId() {
-        return this.list();
+    public List<ColWork> getColWorkListByWorkerId(Long workerId) {
+        LambdaQueryWrapper<ColWork> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(ColWork::getWorker_id,workerId);
+        return colWorkMapper.selectList(queryWrapper);
     }
 
     @Override
     public int addWork(Long taskId) {
-        Long workerId = Long.valueOf(String.valueOf(StpUtil.getLoginId())).longValue();
+        Long workerId = Long.valueOf(String.valueOf(StpUtil.getLoginId()));
         ColTask colTask = colTaskService.getColTaskById(taskId);
         colTask.setState(2);
         colTask.setWorker_id(workerId);
@@ -52,7 +56,8 @@ public class ColWorkServiceImpl extends ServiceImpl<ColWorkMapper, ColWork>
         if (colTask.getDescription() != null) {
             colWork.setDescription(colTask.getDescription());
         }
-        colWork.setNumber(colTask.getNumber());
+        colWork.setNeed(colTask.getNumber());
+        colWork.setNumber(0);
         return colWorkMapper.insert(colWork);
     }
 
@@ -67,6 +72,18 @@ public class ColWorkServiceImpl extends ServiceImpl<ColWorkMapper, ColWork>
     }
 
     @Override
+    public int updateWork(ColWork colWork) {
+        return colWorkMapper.updateById(colWork);
+    }
+
+    @Override
+    public int addOnePic(Long colWorkId) {
+        ColWork colWork = colWorkMapper.selectById(colWorkId);
+        colWork.setNumber(colWork.getNumber() + 1);
+        return colWorkMapper.updateById(colWork);
+    }
+
+    @Override
     public ColWork getColWorkById(Long Id) {
         return colWorkMapper.selectById(Id);
     }
@@ -74,6 +91,7 @@ public class ColWorkServiceImpl extends ServiceImpl<ColWorkMapper, ColWork>
     @Override
     public int submit(Long workId) {
         ColWork colWork = colWorkMapper.selectById(workId);
+
         colWork.setState(1);
         return colWorkMapper.updateById(colWork);
     }
