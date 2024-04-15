@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.bishe.mapper.WorkMapper">
 
-    <resultMap id="BaseResultMap" type="com.example.bishe.model.entity.Work">
+    <resultMap id="BaseResultMap" type="com.example.bishe.model.entity.CutWork">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="workerId" column="worker_id" jdbcType="BIGINT"/>
             <result property="taskId" column="task_id" jdbcType="BIGINT"/>
@@ -16,9 +16,8 @@
             <result property="money" column="money" jdbcType="DECIMAL"/>
             <result property="description" column="description" jdbcType="VARCHAR"/>
             <result property="number" column="number" jdbcType="INTEGER"/>
-            <result property="picAgoUrl" column="pic_ago_url" jdbcType="VARCHAR"/>
-            <result property="picBackUrl" column="pic_back_url" jdbcType="VARCHAR"/>
-            <result property="zipFileUrl" column="zip_file_url" jdbcType="VARCHAR"/>
+            <result property="picAgoId" column="pic_ago_id" jdbcType="BIGINT"/>
+            <result property="picBackId" column="pic_back_id" jdbcType="BIGINT"/>
             <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
             <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
@@ -27,7 +26,7 @@
         id,worker_id,task_id,
         task_number,type,deadline,
         farm_name,state,money,description,
-        number,pic_ago_url,pic_back_url,
-        zip_file_url,create_time,update_time
+        number,pic_ago_id,pic_back_id,
+        create_time,update_time
     </sql>
 </mapper>

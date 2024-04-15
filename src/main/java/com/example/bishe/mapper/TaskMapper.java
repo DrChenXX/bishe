@@ -1,6 +1,6 @@
 package com.example.bishe.mapper;
 
-import com.example.bishe.model.entity.Task;
+import com.example.bishe.model.entity.CutTask;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @createDate 2024-04-03 11:11:29
 * @Entity generator.domain.Task
 */
-public interface TaskMapper extends BaseMapper<Task> {
+public interface TaskMapper extends BaseMapper<CutTask> {
 
 }
 

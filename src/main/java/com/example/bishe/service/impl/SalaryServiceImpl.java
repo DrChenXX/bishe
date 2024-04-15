@@ -2,12 +2,12 @@ package com.example.bishe.service.impl;
 
 import com.alipay.api.AlipayApiException;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.bishe.model.entity.CutWork;
 import com.example.bishe.model.entity.Salary;
-import com.example.bishe.model.entity.Work;
 import com.example.bishe.service.SalaryService;
 import com.example.bishe.mapper.SalaryMapper;
 import com.example.bishe.service.UserService;
-import com.example.bishe.service.WorkService;
+import com.example.bishe.service.CutWorkService;
 import com.example.bishe.util.AliPayUtil;
 import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +30,7 @@ public class SalaryServiceImpl extends ServiceImpl<SalaryMapper, Salary>
     private SalaryMapper salaryMapper;
 
     @Resource
-    private WorkService workService;
+    private CutWorkService cutWorkService;
 
     @Resource
     private UserService userService;
@@ -44,15 +44,15 @@ public class SalaryServiceImpl extends ServiceImpl<SalaryMapper, Salary>
 
     @Override
     public int generate(Long workId, BigDecimal money) {
-        Work work = workService.getWorkById(workId);
+        CutWork cutWork = cutWorkService.getWorkById(workId);
         Salary salary = new Salary();
-        salary.setWorkerId(work.getWorkerId());
-        salary.setTaskId(work.getTaskId());
-        salary.setWorkerNumber(userService.getUserById(work.getWorkerId()).getWorkerNumber());
-        salary.setWorkerName(userService.getUserById(work.getWorkerId()).getUsername());
-        salary.setTaskNumber(work.getTaskNumber());
-        salary.setType(work.getType());
-        salary.setNumber(work.getNumber());
+        salary.setWorkerId(cutWork.getWorkerId());
+        salary.setTaskId(cutWork.getTaskId());
+        salary.setWorkerNumber(userService.getUserById(cutWork.getWorkerId()).getWorkerNumber());
+        salary.setWorkerName(userService.getUserById(cutWork.getWorkerId()).getUsername());
+        salary.setTaskNumber(cutWork.getTaskNumber());
+        salary.setType(cutWork.getType());
+        salary.setNumber(cutWork.getNumber());
         salary.setMoney(money);
         return salaryMapper.insert(salary);
     }

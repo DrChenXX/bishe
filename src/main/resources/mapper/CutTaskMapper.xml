@@ -4,10 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.bishe.mapper.TaskMapper">
 
-    <resultMap id="BaseResultMap" type="com.example.bishe.model.entity.Task">
+    <resultMap id="BaseResultMap" type="com.example.bishe.model.entity.CutTask">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="taskNumber" column="task_number" jdbcType="VARCHAR"/>
-            <result property="type" column="type" jdbcType="VARCHAR"/>
             <result property="farmName" column="farm_name" jdbcType="VARCHAR"/>
             <result property="money" column="money" jdbcType="DECIMAL"/>
             <result property="name" column="name" jdbcType="VARCHAR"/>
@@ -20,7 +19,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,task_number,type,
+        id,task_number,
         farm_name,money,name,
         deadline,state,description,
         worker_id,create_time,update_time

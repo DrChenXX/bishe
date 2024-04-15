@@ -15,12 +15,6 @@ import java.util.List;
 public interface AppealService extends IService<Appeal> {
     List<Appeal> getAppealList();
 
-    int addAppeal(AddAppealForm addAppealForm);
-
-    int comfirmAppeal(Long id);
-
-    int rejecetAppeal(RejectAppealForm rejectAppealForm);
-
     int deleteAppeal(Long id);
 
     int updateAppeal(Appeal appeal);

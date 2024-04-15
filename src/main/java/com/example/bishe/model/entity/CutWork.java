@@ -11,11 +11,11 @@ import lombok.Data;
 
 /**
  * 
- * @TableName work
+ * @TableName cut_work
  */
-@TableName(value ="work")
+@TableName(value ="cut_work")
 @Data
-public class Work implements Serializable {
+public class CutWork implements Serializable {
     /**
      * 主键ID
      */
@@ -85,20 +85,14 @@ public class Work implements Serializable {
     /**
      * 砍伐前照片地址
      */
-    @TableField(value = "pic_ago_url")
-    private String picAgoUrl;
+    @TableField(value = "pic_ago_id")
+    private Long picAgoId;
 
     /**
      * 砍伐后照片地址
      */
-    @TableField(value = "pic_back_url")
-    private String picBackUrl;
-
-    /**
-     * 采集照片压缩包
-     */
-    @TableField(value = "zip_file_url")
-    private String zipFileUrl;
+    @TableField(value = "pic_back_id")
+    private Long picBackId;
 
     /**
      * 创建时间

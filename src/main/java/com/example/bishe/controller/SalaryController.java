@@ -2,9 +2,7 @@ package com.example.bishe.controller;
 
 import cn.dev33.satoken.util.SaResult;
 import com.example.bishe.model.entity.Salary;
-import com.example.bishe.model.entity.Work;
 import com.example.bishe.service.SalaryService;
-import com.example.bishe.service.WorkService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;

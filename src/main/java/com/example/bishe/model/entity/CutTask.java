@@ -11,11 +11,11 @@ import lombok.Data;
 
 /**
  * 
- * @TableName task
+ * @TableName cut_task
  */
-@TableName(value ="task")
+@TableName(value ="cut_task")
 @Data
-public class Task implements Serializable {
+public class CutTask implements Serializable {
     /**
      * 主键ID
      */
@@ -27,12 +27,6 @@ public class Task implements Serializable {
      */
     @TableField(value = "task_number")
     private String taskNumber;
-
-    /**
-     * 任务类型
-     */
-    @TableField(value = "type")
-    private String type;
 
     /**
      * 任务地点（林场名）

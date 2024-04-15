@@ -2,10 +2,8 @@ package com.example.bishe.service;
 
 import com.example.bishe.model.entity.Salary;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.example.bishe.model.entity.Work;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.List;
 
 /**

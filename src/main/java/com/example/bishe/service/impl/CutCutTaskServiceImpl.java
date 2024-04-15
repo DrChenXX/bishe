@@ -2,9 +2,9 @@ package com.example.bishe.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.bishe.model.dto.AddTaskForm;
-import com.example.bishe.model.entity.Task;
+import com.example.bishe.model.entity.CutTask;
 import com.example.bishe.model.entity.User;
-import com.example.bishe.service.TaskService;
+import com.example.bishe.service.CutTaskService;
 import com.example.bishe.mapper.TaskMapper;
 import com.example.bishe.service.UserService;
 import com.example.bishe.util.SendSmsUtil;
@@ -13,8 +13,6 @@ import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,8 +25,8 @@ import java.util.concurrent.ExecutionException;
 */
 @Service
 @RequiredArgsConstructor
-public class TaskServiceImpl extends ServiceImpl<TaskMapper, Task>
-    implements TaskService{
+public class CutCutTaskServiceImpl extends ServiceImpl<TaskMapper, CutTask>
+    implements CutTaskService {
 
     @Resource
     private TaskMapper taskMapper;
@@ -44,13 +42,13 @@ public class TaskServiceImpl extends ServiceImpl<TaskMapper, Task>
      * @return 所有任务
      */
     @Override
-    public List<Task> getTasklist() {
+    public List<CutTask> getTasklist() {
         //TODO 分页查询
         return this.list();
     }
 
     @Override
-    public List<Task> getFreeTaskList() {
+    public List<CutTask> getFreeTaskList() {
         //todo 分页查询
         return this.list();
     }
@@ -62,19 +60,18 @@ public class TaskServiceImpl extends ServiceImpl<TaskMapper, Task>
      */
     @Override
     public int addTask(AddTaskForm addTaskForm) {
-        Task task = new Task();
-        task.setType(addTaskForm.getType());
-        task.setFarmName(addTaskForm.getFarmName());
-        task.setMoney(addTaskForm.getMoney());
-        task.setName(addTaskForm.getName());
-        task.setDeadline(addTaskForm.getDeadline());
+        CutTask cutTask = new CutTask();
+        cutTask.setFarmName(addTaskForm.getFarmName());
+        cutTask.setMoney(addTaskForm.getMoney());
+        cutTask.setName(addTaskForm.getName());
+        cutTask.setDeadline(addTaskForm.getDeadline());
         if (addTaskForm.getDescription() != null) {
-            task.setDescription(addTaskForm.getDescription());
+            cutTask.setDescription(addTaskForm.getDescription());
         }
-        task.setState(0);
-        task.setWorkerId(0L);
+        cutTask.setState(0);
+        cutTask.setWorkerId(0L);
 
-        return taskMapper.insert(task);
+        return taskMapper.insert(cutTask);
     }
 
     /**
@@ -84,8 +81,8 @@ public class TaskServiceImpl extends ServiceImpl<TaskMapper, Task>
      */
     @Override
     public int deleteTask(Long id) {
-        Task task = taskMapper.selectById(id);
-        if (task.getState() != 0) {
+        CutTask cutTask = taskMapper.selectById(id);
+        if (cutTask.getState() != 0) {
             //任务已发布，不支持修改或删除
             return 0;
         }
@@ -95,17 +92,17 @@ public class TaskServiceImpl extends ServiceImpl<TaskMapper, Task>
 
     /**
      * 更新任务
-     * @param task
+     * @param cutTask
      * @return
      */
     @Override
-    public int updateTask(Task task) {
-        Task task1 = taskMapper.selectById(task.getId());
-        if (task1.getState() != 0) {
+    public int updateTask(CutTask cutTask) {
+        CutTask cutTask1 = taskMapper.selectById(cutTask.getId());
+        if (cutTask1.getState() != 0) {
             //任务已发布，不支持修改或删除
             return 0;
         }
-        return taskMapper.updateById(task);
+        return taskMapper.updateById(cutTask);
     }
 
     /**
@@ -114,7 +111,7 @@ public class TaskServiceImpl extends ServiceImpl<TaskMapper, Task>
      * @return
      */
     @Override
-    public Task getTaskById(Long id) {
+    public CutTask getTaskById(Long id) {
         return taskMapper.selectById(id);
     }
 
@@ -130,10 +127,10 @@ public class TaskServiceImpl extends ServiceImpl<TaskMapper, Task>
                 .format(new Date());
         String str = String.format("%04d", id);
         String taskNumber = todayDate + str;
-        Task task = taskMapper.selectById(id);
+        CutTask cutTask = taskMapper.selectById(id);
         //1表述已发布
-        task.setTaskNumber(taskNumber);
-        task.setState(1);
+        cutTask.setTaskNumber(taskNumber);
+        cutTask.setState(1);
         //发送短信
         ArrayList<String> phoneList = new ArrayList<>();
         List<User> userList = userService.getUserList();
@@ -148,7 +145,7 @@ public class TaskServiceImpl extends ServiceImpl<TaskMapper, Task>
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        return taskMapper.updateById(task);
+        return taskMapper.updateById(cutTask);
     }
 }
 
