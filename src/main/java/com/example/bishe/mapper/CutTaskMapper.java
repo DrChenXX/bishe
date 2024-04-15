@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @createDate 2024-04-03 11:11:29
 * @Entity generator.domain.Task
 */
-public interface TaskMapper extends BaseMapper<CutTask> {
+public interface CutTaskMapper extends BaseMapper<CutTask> {
 
 }
 

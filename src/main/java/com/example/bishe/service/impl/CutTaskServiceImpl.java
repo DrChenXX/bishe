@@ -1,11 +1,12 @@
 package com.example.bishe.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.bishe.model.dto.AddCutTaskForm;
+import com.example.bishe.model.dto.AddUpdateCutTaskForm;
 import com.example.bishe.model.entity.CutTask;
 import com.example.bishe.model.entity.User;
 import com.example.bishe.service.CutTaskService;
-import com.example.bishe.mapper.TaskMapper;
+import com.example.bishe.mapper.CutTaskMapper;
 import com.example.bishe.service.UserService;
 import com.example.bishe.util.SendSmsUtil;
 import jakarta.annotation.Resource;
@@ -25,11 +26,11 @@ import java.util.concurrent.ExecutionException;
 */
 @Service
 @RequiredArgsConstructor
-public class CutTaskServiceImpl extends ServiceImpl<TaskMapper, CutTask>
+public class CutTaskServiceImpl extends ServiceImpl<CutTaskMapper, CutTask>
     implements CutTaskService {
 
     @Resource
-    private TaskMapper taskMapper;
+    private CutTaskMapper cutTaskMapper;
 
     @Resource
     private SendSmsUtil sendSmsUtil;
@@ -38,8 +39,8 @@ public class CutTaskServiceImpl extends ServiceImpl<TaskMapper, CutTask>
     private UserService userService;
 
     /**
-     * 获取所有任务
-     * @return 所有任务
+     * 获取任务列表
+     * @return 任务列表
      */
     @Override
     public List<CutTask> getTasklist() {
@@ -47,78 +48,96 @@ public class CutTaskServiceImpl extends ServiceImpl<TaskMapper, CutTask>
         return this.list();
     }
 
-    @Override
-    public List<CutTask> getFreeTaskList() {
-        //todo 分页查询
-        return this.list();
-    }
-
     /**
-     * 新添任务
-     * @param addCutTaskForm
-     * @return
+     * 获取未被领取任务列表
+     * @return 被领取任务列表
      */
     @Override
-    public int addTask(AddCutTaskForm addCutTaskForm) {
-        CutTask cutTask = new CutTask();
-        cutTask.setFarmName(addCutTaskForm.getFarmName());
-        cutTask.setMoney(addCutTaskForm.getMoney());
-        cutTask.setName(addCutTaskForm.getName());
-        cutTask.setDeadline(addCutTaskForm.getDeadline());
-        if (addCutTaskForm.getDescription() != null) {
-            cutTask.setDescription(addCutTaskForm.getDescription());
-        }
-        cutTask.setState(0);
-        cutTask.setWorkerId(0L);
-
-        return taskMapper.insert(cutTask);
+    public List<CutTask> getFreeTaskList() {
+        LambdaQueryWrapper<CutTask> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(CutTask::getState, 0);
+        return cutTaskMapper.selectList(queryWrapper);
     }
 
     /**
-     * 删除任务
-     * @param id
-     * @return
+     * 根据Id查询任务
+     * @param id 任务Id
+     * @return 任务信息
+     */
+    @Override
+    public CutTask getTaskById(Long id) {
+        return cutTaskMapper.selectById(id);
+    }
+
+    /**
+     * 添加任务
+     * @param addUpdateCutTaskForm 添加任务实体
+     * @return  affected rows
+     */
+    @Override
+    public int addTask(AddUpdateCutTaskForm addUpdateCutTaskForm) {
+        CutTask cutTask = new CutTask();
+        cutTask.setFarmName(addUpdateCutTaskForm.getFarmName());
+        cutTask.setMoney(addUpdateCutTaskForm.getMoney());
+        cutTask.setName(addUpdateCutTaskForm.getName());
+        cutTask.setDeadline(addUpdateCutTaskForm.getDeadline());
+        cutTask.setDescription(addUpdateCutTaskForm.getDescription());
+        cutTask.setWorkerId(0L);
+        return cutTaskMapper.insert(cutTask);
+    }
+
+    /**
+     * 更新任务信息
+     * @param taskId 任务Id
+     * @param addUpdateCutTaskForm 更新任务实体
+     * @return affected rows
+     */
+    @Override
+    public int updateTask(Long taskId, AddUpdateCutTaskForm addUpdateCutTaskForm) {
+        CutTask cutTask = cutTaskMapper.selectById(taskId);
+        if (cutTask.getState() != 0) {
+            //任务已发布，不支持修改或删除
+            return 0;
+        } else {
+            if (addUpdateCutTaskForm.getFarmName() != null) {
+                cutTask.setFarmName(addUpdateCutTaskForm.getFarmName());
+            }
+            if (addUpdateCutTaskForm.getMoney() != null) {
+                cutTask.setMoney(addUpdateCutTaskForm.getMoney());
+            }
+            if (addUpdateCutTaskForm.getName() != null) {
+                cutTask.setName(addUpdateCutTaskForm.getName());
+            }
+            if (addUpdateCutTaskForm.getDeadline() != null) {
+                cutTask.setDeadline(addUpdateCutTaskForm.getDeadline());
+            }
+            if (addUpdateCutTaskForm.getDescription() != null) {
+                cutTask.setDescription(addUpdateCutTaskForm.getDescription());
+            }
+            return cutTaskMapper.updateById(cutTask);
+        }
+
+    }
+
+    /**
+     * 删除任务信息
+     * @param id 任务id
+     * @return affected rows
      */
     @Override
     public int deleteTask(Long id) {
-        CutTask cutTask = taskMapper.selectById(id);
+        CutTask cutTask = cutTaskMapper.selectById(id);
         if (cutTask.getState() != 0) {
             //任务已发布，不支持修改或删除
             return 0;
         }
-        return taskMapper.deleteById(id);
-        //todo 删除关联
-    }
-
-    /**
-     * 更新任务
-     * @param cutTask
-     * @return
-     */
-    @Override
-    public int updateTask(CutTask cutTask) {
-        CutTask cutTask1 = taskMapper.selectById(cutTask.getId());
-        if (cutTask1.getState() != 0) {
-            //任务已发布，不支持修改或删除
-            return 0;
-        }
-        return taskMapper.updateById(cutTask);
-    }
-
-    /**
-     *
-     * @param id
-     * @return
-     */
-    @Override
-    public CutTask getTaskById(Long id) {
-        return taskMapper.selectById(id);
+        return cutTaskMapper.deleteById(id);
     }
 
     /**
      * 发布任务
-     * @param id
-     * @return
+     * @param id 任务id
+     * @return affected rows
      */
     @Override
     public int publishTask(Long id) {
@@ -127,7 +146,7 @@ public class CutTaskServiceImpl extends ServiceImpl<TaskMapper, CutTask>
                 .format(new Date());
         String str = String.format("%04d", id);
         String taskNumber = todayDate + str;
-        CutTask cutTask = taskMapper.selectById(id);
+        CutTask cutTask = cutTaskMapper.selectById(id);
         //1表述已发布
         cutTask.setTaskNumber(taskNumber);
         cutTask.setState(1);
@@ -145,7 +164,7 @@ public class CutTaskServiceImpl extends ServiceImpl<TaskMapper, CutTask>
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        return taskMapper.updateById(cutTask);
+        return cutTaskMapper.updateById(cutTask);
     }
 }
 

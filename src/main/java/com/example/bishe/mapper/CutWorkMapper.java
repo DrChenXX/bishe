@@ -8,7 +8,7 @@ import com.example.bishe.model.entity.CutWork;
 * @createDate 2024-04-03 11:11:29
 * @Entity generator.domain.Work
 */
-public interface WorkMapper extends BaseMapper<CutWork> {
+public interface CutWorkMapper extends BaseMapper<CutWork> {
 
 }
 

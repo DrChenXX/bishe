@@ -13,14 +13,39 @@ import java.util.List;
  */
 public interface FarmService extends IService<Farm> {
 
+    /**
+     * 添加林场信息
+     * @param addUpdateFarmForm 添加林场信息实体
+     * @return affected rows
+     */
     int addFarm(AddUpdateFarmForm addUpdateFarmForm);
 
+    /**
+     * 删除林场信息
+     * @param farmId 林场id
+     * @return affected rows
+     */
     int deleteFarm(Long farmId);
 
+    /**
+     * 修改林场信息
+     * @param farmId 林场id
+     * @param addUpdateFarmForm 林场实体
+     * @return affected rows
+     */
     int updateFarm(Long farmId, AddUpdateFarmForm addUpdateFarmForm);
 
-    Farm getFarm(Long farmId);
+    /**
+     * 根据id获取林场信息
+     * @param farmId 林场id
+     * @return 林场实体
+     */
+    Farm getFarmById(Long farmId);
 
+    /**
+     * 获取所有林场列表
+     * @return 林场列表
+     */
     List<Farm> getFarmList();
 }
 

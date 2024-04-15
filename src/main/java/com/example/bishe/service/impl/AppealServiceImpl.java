@@ -1,14 +1,8 @@
 package com.example.bishe.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.bishe.mapper.SingleColMapper;
-import com.example.bishe.mapper.WorkMapper;
-import com.example.bishe.model.dto.AddAppealForm;
 import com.example.bishe.model.dto.GetAppealByConditionForm;
-import com.example.bishe.model.dto.RejectAppealForm;
 import com.example.bishe.model.entity.Appeal;
-import com.example.bishe.model.entity.CutWork;
-import com.example.bishe.model.entity.SingleCol;
 import com.example.bishe.service.AppealService;
 import com.example.bishe.mapper.AppealMapper;
 import jakarta.annotation.Resource;

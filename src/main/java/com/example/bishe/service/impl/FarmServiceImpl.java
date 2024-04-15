@@ -25,7 +25,7 @@ public class FarmServiceImpl extends ServiceImpl<FarmMapper, Farm>
     /**
      * 添加林场信息
      * @param addUpdateFarmForm 添加林场信息实体
-     * @return
+     * @return affected rows
      */
     @Override
         public int addFarm(AddUpdateFarmForm addUpdateFarmForm) {
@@ -39,13 +39,19 @@ public class FarmServiceImpl extends ServiceImpl<FarmMapper, Farm>
     /**
      * 删除林场信息
      * @param farmId 林场id
-     * @return
+     * @return affected rows
      */
     @Override
     public int deleteFarm(Long farmId) {
         return farmMapper.deleteById(farmId);
     }
 
+    /**
+     * 修改林场信息
+     * @param farmId 林场id
+     * @param addUpdateFarmForm 林场实体
+     * @return affected rows
+     */
     @Override
     public int updateFarm(Long farmId, AddUpdateFarmForm addUpdateFarmForm) {
         Farm farm = farmMapper.selectById(farmId);
@@ -55,11 +61,20 @@ public class FarmServiceImpl extends ServiceImpl<FarmMapper, Farm>
         return farmMapper.updateById(farm);
     }
 
+    /**
+     * 根据id获取林场信息
+     * @param farmId 林场id
+     * @return 林场实体
+     */
     @Override
-    public Farm getFarm(Long farmId) {
+    public Farm getFarmById(Long farmId) {
         return farmMapper.selectById(farmId);
     }
 
+    /**
+     * 获取所有林场列表
+     * @return 林场列表
+     */
     @Override
     public List<Farm> getFarmList() {
         //TODO 分页查询

@@ -19,7 +19,11 @@ public class FarmController {
     private FarmService farmService;
 
 
-    // 添加林场信息
+    /**
+     * 添加林场信息
+     * @param addUpdateFarmForm 添加林场信息实体
+     * @return affected rows
+     */
     @PostMapping("/addFarm")
     public SaResult addFarm(@RequestBody AddUpdateFarmForm addUpdateFarmForm) {
         int added = farmService.addFarm(addUpdateFarmForm);
@@ -30,7 +34,12 @@ public class FarmController {
         }
 
     }
-    // 删除林场信息
+
+    /**
+     * 删除林场信息
+     * @param farmId 林场id
+     * @return affected rows
+     */
     @DeleteMapping("/delete")
     public SaResult deleteFarm(Long farmId) {
         int deleted = farmService.deleteFarm(farmId);
@@ -40,7 +49,13 @@ public class FarmController {
             return SaResult.error("删除失败");
         }
     }
-    // 修改林场信息
+
+    /**
+     * 修改林场信息
+     * @param farmId 林场id
+     * @param addUpdateFarmForm 林场实体
+     * @return affected rows
+     */
     @PostMapping("/update")
     public SaResult updateFarm(Long farmId,@RequestBody AddUpdateFarmForm addUpdateFarmForm) {
         int updated = farmService.updateFarm(farmId, addUpdateFarmForm);
@@ -51,10 +66,15 @@ public class FarmController {
         }
 
     }
-    // 查询林场信息
+
+    /**
+     * 根据id获取林场信息
+     * @param farmId 林场id
+     * @return 林场实体
+     */
     @GetMapping("/get")
     public SaResult getFarm(Long farmId) {
-        Farm farm = farmService.getFarm(farmId);
+        Farm farm = farmService.getFarmById(farmId);
         if (farm != null) {
             return SaResult.ok().setData(farm);
         }else {
@@ -62,7 +82,11 @@ public class FarmController {
         }
 
     }
-    // 查询林场列表
+
+    /**
+     * 获取所有林场列表
+     * @return 林场列表
+     */
     @GetMapping("/list")
     public SaResult getFarmList() {
         List<Farm> farmList = farmService.getFarmList();

@@ -1,7 +1,7 @@
 package com.example.bishe.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.bishe.mapper.WorkMapper;
+import com.example.bishe.mapper.CutWorkMapper;
 import com.example.bishe.model.dto.AddColForm;
 import com.example.bishe.model.dto.RejectColForm;
 import com.example.bishe.model.entity.CutWork;
@@ -27,7 +27,7 @@ public class SingleColServiceImpl extends ServiceImpl<SingleColMapper, SingleCol
     private SingleColMapper singleColMapper;
 
     @Resource
-    private WorkMapper workMapper;
+    private CutWorkMapper cutWorkMapper;
 
     @Override
     public List<SingleCol> getSingleColList() {
@@ -54,9 +54,9 @@ public class SingleColServiceImpl extends ServiceImpl<SingleColMapper, SingleCol
     public int comfirmSingleCol(Long id) {
         SingleCol singleCol = singleColMapper.selectById(id);
         singleCol.setState("1");
-        CutWork cutWork = workMapper.selectById(singleCol.getWorkId());
+        CutWork cutWork = cutWorkMapper.selectById(singleCol.getWorkId());
         //work.setNownum(work.getNownum() + 1);
-        workMapper.updateById(cutWork);
+        cutWorkMapper.updateById(cutWork);
         return singleColMapper.updateById(singleCol);
     }
 
@@ -73,9 +73,9 @@ public class SingleColServiceImpl extends ServiceImpl<SingleColMapper, SingleCol
     public int deleteSingleCol(Long id) {
         SingleCol singleCol = singleColMapper.selectById(id);
         if (singleCol.getState().equals("1")) {
-            CutWork cutWork = workMapper.selectById(singleCol.getWorkId());
+            CutWork cutWork = cutWorkMapper.selectById(singleCol.getWorkId());
             //work.setNownum(work.getNownum() - 1);
-            workMapper.updateById(cutWork);
+            cutWorkMapper.updateById(cutWork);
         }
         return singleColMapper.deleteById(id);
     }

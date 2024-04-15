@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
-public class AddCutTaskForm implements Serializable {
+public class AddUpdateCutTaskForm implements Serializable {
 
     /**
      * 任务地点(林场)
