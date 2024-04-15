@@ -82,7 +82,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
     /**
      * 添加用户
-     *
      * @param addUpdateUserForm 用户添加表单
      * @return true/false
      */
@@ -100,6 +99,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         //TODO 添加角色信息
     }
 
+    /**
+     * 删除用户
+     * @param id 用户ID
+     * @return deleted
+     */
     @Override
     public int deleteUser(Long id) {
         return userMapper.deleteById(id);
@@ -108,7 +112,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
     /**
      * 更新用户
-     *
      * @param updateUserForm 用户实体
      */
     @Override
@@ -128,7 +131,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
     /**
      * 根据用户ID查询用户
-     *
      * @param id 用户ID
      */
     @Override

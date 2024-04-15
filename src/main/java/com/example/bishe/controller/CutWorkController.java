@@ -66,11 +66,11 @@ public class CutWorkController {
 
     @PostMapping("/finish")
     public SaResult finishWork(@RequestBody Long id) {
-        int finished = workService.submitWork(id);
+        int finished = cutWorkService.submit(id);
         if (finished >= 1) {
-            return SaResult.ok().setMsg("完成任务成功");
+            return SaResult.ok().setMsg("提交任务成功");
         }
-        return SaResult.error("完成任务失败");
+        return SaResult.error("提交任务失败");
     }
 
 

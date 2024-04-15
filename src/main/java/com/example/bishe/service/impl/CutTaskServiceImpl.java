@@ -1,7 +1,7 @@
 package com.example.bishe.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.bishe.model.dto.AddTaskForm;
+import com.example.bishe.model.dto.AddCutTaskForm;
 import com.example.bishe.model.entity.CutTask;
 import com.example.bishe.model.entity.User;
 import com.example.bishe.service.CutTaskService;
@@ -55,18 +55,18 @@ public class CutTaskServiceImpl extends ServiceImpl<TaskMapper, CutTask>
 
     /**
      * 新添任务
-     * @param addTaskForm
+     * @param addCutTaskForm
      * @return
      */
     @Override
-    public int addTask(AddTaskForm addTaskForm) {
+    public int addTask(AddCutTaskForm addCutTaskForm) {
         CutTask cutTask = new CutTask();
-        cutTask.setFarmName(addTaskForm.getFarmName());
-        cutTask.setMoney(addTaskForm.getMoney());
-        cutTask.setName(addTaskForm.getName());
-        cutTask.setDeadline(addTaskForm.getDeadline());
-        if (addTaskForm.getDescription() != null) {
-            cutTask.setDescription(addTaskForm.getDescription());
+        cutTask.setFarmName(addCutTaskForm.getFarmName());
+        cutTask.setMoney(addCutTaskForm.getMoney());
+        cutTask.setName(addCutTaskForm.getName());
+        cutTask.setDeadline(addCutTaskForm.getDeadline());
+        if (addCutTaskForm.getDescription() != null) {
+            cutTask.setDescription(addCutTaskForm.getDescription());
         }
         cutTask.setState(0);
         cutTask.setWorkerId(0L);

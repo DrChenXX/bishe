@@ -2,21 +2,13 @@ package com.example.bishe.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
-public class AddTaskForm implements Serializable {
-
-    /**
-     * 任务类型
-     * 1:砍伐任务
-     * 2:采集任务
-     */
-    private String type;
+public class AddCutTaskForm implements Serializable {
 
     /**
      * 任务地点(林场)

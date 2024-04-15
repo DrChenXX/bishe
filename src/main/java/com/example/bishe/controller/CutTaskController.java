@@ -1,7 +1,7 @@
 package com.example.bishe.controller;
 
 import cn.dev33.satoken.util.SaResult;
-import com.example.bishe.model.dto.AddTaskForm;
+import com.example.bishe.model.dto.AddCutTaskForm;
 import com.example.bishe.model.entity.CutTask;
 import com.example.bishe.service.CutTaskService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -30,8 +30,8 @@ public class CutTaskController {
     }
 
     @PostMapping("/add")
-    public SaResult addTask(@RequestBody AddTaskForm addTaskForm) {
-        int added = cutTaskService.addTask(addTaskForm);
+    public SaResult addTask(@RequestBody AddCutTaskForm addCutTaskForm) {
+        int added = cutTaskService.addTask(addCutTaskForm);
         if (added >= 1) {
             return SaResult.ok().setMsg("任务添加成功");
         }

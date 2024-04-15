@@ -1,6 +1,6 @@
 package com.example.bishe.service;
 
-import com.example.bishe.model.dto.AddTaskForm;
+import com.example.bishe.model.dto.AddCutTaskForm;
 import com.example.bishe.model.entity.CutTask;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -18,7 +18,7 @@ public interface CutTaskService extends IService<CutTask> {
 
     List<CutTask> getFreeTaskList();
 
-    int addTask(AddTaskForm addTaskForm);
+    int addTask(AddCutTaskForm addCutTaskForm);
 
     /**
      * 删除任务

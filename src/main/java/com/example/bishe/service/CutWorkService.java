@@ -15,7 +15,6 @@ public interface CutWorkService extends IService<CutWork> {
     int addWork(Long taskId);
 
     int deleteWork(Long id);
-    
 
     CutWork getWorkById(Long id);
 

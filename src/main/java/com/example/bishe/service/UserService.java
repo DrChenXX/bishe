@@ -27,7 +27,7 @@ public interface UserService extends IService<User> {
     Boolean isLogin();
 
     /**
-     * 用户登出
+     * 用户注销
      */
     void logout();
 
@@ -53,7 +53,7 @@ public interface UserService extends IService<User> {
      * 更新用户
      * @param updateUserForm 用户更新实体
      */
-    int updateUser(Long userId, AddUpdateUserForm updateUserForm);
+    int updateUser(Long userId,  AddUpdateUserForm updateUserForm);
 
     /**
      * 根据用户ID查询用户

@@ -18,6 +18,11 @@ public class AuthController {
     @Resource
     private UserService userService;
 
+    /**
+     * 用户登录
+     * @param loginRequest 登录实体
+     * @return token
+     */
     @PostMapping("/login")
     public SaResult login(@RequestBody LoginRequest loginRequest) {
 
@@ -31,6 +36,10 @@ public class AuthController {
         return SaResult.ok().setData(token);
     }
 
+    /**
+     * 判断用户是否已登录
+     * @return true、false
+     */
     @GetMapping("isLogin")
     public SaResult isLogin() {
         Boolean login = userService.isLogin();
@@ -41,6 +50,10 @@ public class AuthController {
         }
     }
 
+    /**
+     * 注销
+     * @return 用户信息
+     */
     @GetMapping("logout")
     public SaResult logout() {
         userService.logout();
