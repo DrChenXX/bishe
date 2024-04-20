@@ -51,7 +51,6 @@ public class SalaryServiceImpl extends ServiceImpl<SalaryMapper, Salary>
         salary.setWorkerNumber(userService.getUserById(cutWork.getWorkerId()).getWorkerNumber());
         salary.setWorkerName(userService.getUserById(cutWork.getWorkerId()).getUsername());
         salary.setTaskNumber(cutWork.getTaskNumber());
-        salary.setType(cutWork.getType());
         salary.setNumber(cutWork.getNumber());
         salary.setMoney(money);
         return salaryMapper.insert(salary);

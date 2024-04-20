@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "工人任务模块", description = "工人任务管理")
+@Tag(name = "工人砍伐任务模块", description = "工人任务管理")
 @RestController
-@RequestMapping("/work")
+@RequestMapping("/cutWork")
 public class CutWorkController {
     @Resource
     private CutTaskService cutTaskService;

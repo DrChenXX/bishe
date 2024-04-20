@@ -9,7 +9,6 @@
             <result property="workerId" column="worker_id" jdbcType="BIGINT"/>
             <result property="taskId" column="task_id" jdbcType="BIGINT"/>
             <result property="taskNumber" column="task_number" jdbcType="VARCHAR"/>
-            <result property="type" column="type" jdbcType="VARCHAR"/>
             <result property="deadline" column="deadline" jdbcType="TIMESTAMP"/>
             <result property="farmName" column="farm_name" jdbcType="VARCHAR"/>
             <result property="state" column="state" jdbcType="INTEGER"/>

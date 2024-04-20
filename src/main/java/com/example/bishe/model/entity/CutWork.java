@@ -40,11 +40,6 @@ public class CutWork implements Serializable {
     @TableField(value = "task_number")
     private String taskNumber;
 
-    /**
-     * 任务类型
-     */
-    @TableField(value = "type")
-    private String type;
 
     /**
      * 截止时间

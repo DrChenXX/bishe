@@ -6,17 +6,17 @@
 
     <resultMap id="BaseResultMap" type="com.example.bishe.model.entity.ColWork">
             <id property="id" column="id" jdbcType="BIGINT"/>
-            <result property="worker_id" column="worker_id" jdbcType="BIGINT"/>
-            <result property="task_id" column="task_id" jdbcType="BIGINT"/>
-            <result property="task_number" column="task_number" jdbcType="VARCHAR"/>
+            <result property="workerId" column="worker_id" jdbcType="BIGINT"/>
+            <result property="taskId" column="task_id" jdbcType="BIGINT"/>
+            <result property="taskNumber" column="task_number" jdbcType="VARCHAR"/>
             <result property="deadline" column="deadline" jdbcType="TIMESTAMP"/>
             <result property="state" column="state" jdbcType="INTEGER"/>
             <result property="money" column="money" jdbcType="DECIMAL"/>
             <result property="description" column="description" jdbcType="VARCHAR"/>
             <result property="need" column="need" jdbcType="INTEGER"/>
             <result property="number" column="number" jdbcType="INTEGER"/>
-            <result property="create_time" column="create_time" jdbcType="TIMESTAMP"/>
-            <result property="update_time" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
