@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "任务管理模块", description = "任务信息增删改查")
+@Tag(name = "砍伐任务管理模块", description = "任务信息增删改查")
 @RestController
 @RequestMapping("/cutTask")
 public class CutTaskController {

@@ -26,19 +26,19 @@ public class ColWork implements Serializable {
      * 工人ID
      */
     @TableField(value = "worker_id")
-    private Long worker_id;
+    private Long workerId;
 
     /**
      * 任务ID
      */
     @TableField(value = "task_id")
-    private Long task_id;
+    private Long taskId;
 
     /**
      * 任务编号
      */
     @TableField(value = "task_number")
-    private String task_number;
+    private String taskNumber;
 
     /**
      * 截止时间
@@ -80,13 +80,13 @@ public class ColWork implements Serializable {
      * 创建时间
      */
     @TableField(value = "create_time")
-    private Date create_time;
+    private Date createTime;
 
     /**
      * 更新时间
      */
     @TableField(value = "update_time")
-    private Date update_time;
+    private Date updateTime;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

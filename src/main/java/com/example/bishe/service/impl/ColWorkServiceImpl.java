@@ -34,7 +34,7 @@ public class ColWorkServiceImpl extends ServiceImpl<ColWorkMapper, ColWork>
     @Override
     public List<ColWork> getColWorkListByWorkerId(Long workerId) {
         LambdaQueryWrapper<ColWork> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(ColWork::getWorker_id,workerId);
+        queryWrapper.eq(ColWork::getWorkerId,workerId);
         return colWorkMapper.selectList(queryWrapper);
     }
 
@@ -47,9 +47,9 @@ public class ColWorkServiceImpl extends ServiceImpl<ColWorkMapper, ColWork>
         colTaskService.updateById(colTask);
 
         ColWork colWork = new ColWork();
-        colWork.setTask_id(taskId);
-        colWork.setWorker_id(workerId);
-        colWork.setTask_number(colTask.getTask_number());
+        colWork.setTaskId(taskId);
+        colWork.setWorkerId(workerId);
+        colWork.setTaskNumber(colTask.getTask_number());
         colWork.setDeadline(colTask.getDeadline());
         colWork.setState(0);
         colWork.setMoney(colTask.getMoney());
@@ -64,7 +64,7 @@ public class ColWorkServiceImpl extends ServiceImpl<ColWorkMapper, ColWork>
     @Override
     public int deleteWork(Long Id) {
         ColWork colWork = colWorkMapper.selectById(Id);
-        ColTask colTask = colTaskService.getColTaskById(colWork.getTask_id());
+        ColTask colTask = colTaskService.getColTaskById(colWork.getTaskId());
         colTask.setState(1);
         colTask.setWorker_id(0L);
         colTaskService.updateById(colTask);
