@@ -3,6 +3,7 @@ package com.example.bishe.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.bishe.mapper.MessageMapper;
 import com.example.bishe.mapper.WorkerMapper;
+import com.example.bishe.model.dto.AddNoticeForm;
 import com.example.bishe.model.entity.Message;
 import com.example.bishe.model.entity.Notice;
 import com.example.bishe.model.entity.Worker;
@@ -12,6 +13,8 @@ import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -38,7 +41,42 @@ public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, Notice>
     }
 
     @Override
-    public int addNotice(Notice notice) {
+    public int addNotice(AddNoticeForm addNoticeForm) {
+        Long now = System.currentTimeMillis();
+        Notice notice = new Notice();
+        notice.setId(now);
+        notice.setType(addNoticeForm.getType());
+        notice.setTarget(addNoticeForm.getTargetId());
+        notice.setContent(addNoticeForm.getContent());
+        return noticeMapper.insert(notice);
+    }
+
+    @Override
+    public int deleteNotice(Long id) {
+        messageMapper.deleteByNoticeId(String.valueOf(id));
+        return noticeMapper.deleteById(id);
+    }
+
+    @Override
+    public int updateNotice(Long id, AddNoticeForm addNoticeForm) {
+        Notice notice = noticeMapper.selectById(id);
+        if (notice.getType().equals("4")) {
+            return 0;
+        }
+        notice.setType(addNoticeForm.getType());
+        notice.setTarget(addNoticeForm.getTargetId());
+        notice.setContent(addNoticeForm.getContent());
+        return noticeMapper.updateById(notice);
+    }
+
+    @Override
+    public Notice getNoticeById(Long id) {
+        return noticeMapper.selectById(id);
+    }
+
+    @Override
+    public int publishNotice(Long id) {
+        Notice notice = noticeMapper.selectById(id);
         if (notice.getType().equals("1")) {
             List<Worker> workerList = workerMapper.searchAll();
             for (Worker worker : workerList) {
@@ -69,23 +107,8 @@ public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, Notice>
             message.setRead("0");
             messageMapper.insert(message);
         }
-        return noticeMapper.insert(notice);
-    }
-
-    @Override
-    public int deleteNotice(Long id) {
-        messageMapper.deleteByNoticeId(String.valueOf(id));
-        return noticeMapper.deleteById(id);
-    }
-
-    @Override
-    public int updateNotice(Notice notice) {
+        notice.setType("4");
         return noticeMapper.updateById(notice);
-    }
-
-    @Override
-    public Notice getNoticeById(Long id) {
-        return noticeMapper.selectById(id);
     }
 }
 

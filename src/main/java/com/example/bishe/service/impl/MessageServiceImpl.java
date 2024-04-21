@@ -1,5 +1,6 @@
 package com.example.bishe.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.bishe.model.entity.Message;
 import com.example.bishe.service.MessageService;
@@ -25,6 +26,13 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, Message>
     @Override
     public List<Message> getMessageList() {
         return this.list();
+    }
+
+    @Override
+    public List<Message> getMessageListByWorkerId(Long workerId) {
+        LambdaQueryWrapper<Message> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(Message::getWorkerId, workerId);
+        return messageMapper.selectList(queryWrapper);
     }
 
     @Override

@@ -12,6 +12,8 @@ import java.util.List;
 public interface MessageService extends IService<Message> {
     List<Message> getMessageList();
 
+    List<Message> getMessageListByWorkerId(Long workerId);
+
     int addMessage(Message message);
 
     int deleteMessage(Long id);
