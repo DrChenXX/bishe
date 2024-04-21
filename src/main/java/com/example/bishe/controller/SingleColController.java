@@ -1,7 +1,7 @@
 package com.example.bishe.controller;
 
 import cn.dev33.satoken.util.SaResult;
-import com.example.bishe.model.dto.AddColForm;
+import com.example.bishe.model.dto.AddUpdateColForm;
 import com.example.bishe.model.dto.RejectColForm;
 import com.example.bishe.model.entity.SingleCol;
 import com.example.bishe.service.SingleColService;
@@ -47,8 +47,8 @@ public class SingleColController {
     }
 
     @PostMapping("/add")
-    public SaResult addSingleCol(@RequestBody AddColForm addColForm) {
-        int added = singleColService.addSingleCol(addColForm);
+    public SaResult addSingleCol(@RequestBody AddUpdateColForm addUpdateColForm) {
+        int added = singleColService.addSingleCol(addUpdateColForm);
         if (added >= 1) {
             return SaResult.ok().setMsg("添加成功");
         } else {

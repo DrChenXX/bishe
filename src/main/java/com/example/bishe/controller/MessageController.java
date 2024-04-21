@@ -33,4 +33,10 @@ public class MessageController {
         }
         return SaResult.error("通知已读失败");
     }
+
+    @GetMapping("/unreadlist")
+    public SaResult getUnreadMessageList(Long workerId){
+        List<Message> messageList = messageService.getUnreadMessageList(workerId);
+        return SaResult.data(messageList);
+    }
 }

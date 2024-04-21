@@ -1,6 +1,6 @@
 package com.example.bishe.service;
 
-import com.example.bishe.model.dto.AddColForm;
+import com.example.bishe.model.dto.AddUpdateColForm;
 import com.example.bishe.model.dto.RejectColForm;
 import com.example.bishe.model.entity.SingleCol;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -18,7 +18,7 @@ public interface SingleColService extends IService<SingleCol> {
 
     List<SingleCol> getSingleColListByWorkerId(Long workerId);
 
-    int addSingleCol(AddColForm addColForm);
+    int addSingleCol(AddUpdateColForm addUpdateColForm);
 
     int comfirmSingleCol(Long id);
 

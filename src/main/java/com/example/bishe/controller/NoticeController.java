@@ -1,7 +1,7 @@
 package com.example.bishe.controller;
 
 import cn.dev33.satoken.util.SaResult;
-import com.example.bishe.model.dto.AddNoticeForm;
+import com.example.bishe.model.dto.AddUpdateNoticeForm;
 import com.example.bishe.model.entity.Notice;
 import com.example.bishe.service.NoticeService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -30,8 +30,8 @@ public class NoticeController {
     }
 
     @PostMapping("/add")
-    public SaResult addNotice(@RequestBody AddNoticeForm addNoticeForm) {
-        int added = noticeService.addNotice(addNoticeForm);
+    public SaResult addNotice(@RequestBody AddUpdateNoticeForm addUpdateNoticeForm) {
+        int added = noticeService.addNotice(addUpdateNoticeForm);
         if (added >= 1) {
             return SaResult.ok().setMsg("通知添加成功");
         }
@@ -39,8 +39,8 @@ public class NoticeController {
     }
 
     @PostMapping("/update")
-    public SaResult updateNotice(Long id, @RequestBody AddNoticeForm addNoticeForm) {
-        int updated = noticeService.updateNotice(id, addNoticeForm);
+    public SaResult updateNotice(Long id, @RequestBody AddUpdateNoticeForm addUpdateNoticeForm) {
+        int updated = noticeService.updateNotice(id, addUpdateNoticeForm);
         if (updated >= 1) {
             return SaResult.ok().setMsg("通知更新成功");
         }

@@ -3,7 +3,7 @@ package com.example.bishe.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.bishe.mapper.MessageMapper;
 import com.example.bishe.mapper.WorkerMapper;
-import com.example.bishe.model.dto.AddNoticeForm;
+import com.example.bishe.model.dto.AddUpdateNoticeForm;
 import com.example.bishe.model.entity.Message;
 import com.example.bishe.model.entity.Notice;
 import com.example.bishe.model.entity.Worker;
@@ -13,8 +13,6 @@ import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,13 +39,11 @@ public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, Notice>
     }
 
     @Override
-    public int addNotice(AddNoticeForm addNoticeForm) {
-        Long now = System.currentTimeMillis();
+    public int addNotice(AddUpdateNoticeForm addUpdateNoticeForm) {
         Notice notice = new Notice();
-        notice.setId(now);
-        notice.setType(addNoticeForm.getType());
-        notice.setTarget(addNoticeForm.getTargetId());
-        notice.setContent(addNoticeForm.getContent());
+        notice.setType(addUpdateNoticeForm.getType());
+        notice.setTarget(addUpdateNoticeForm.getTargetId());
+        notice.setContent(addUpdateNoticeForm.getContent());
         return noticeMapper.insert(notice);
     }
 
@@ -58,14 +54,14 @@ public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, Notice>
     }
 
     @Override
-    public int updateNotice(Long id, AddNoticeForm addNoticeForm) {
+    public int updateNotice(Long id, AddUpdateNoticeForm addUpdateNoticeForm) {
         Notice notice = noticeMapper.selectById(id);
         if (notice.getType().equals("4")) {
             return 0;
         }
-        notice.setType(addNoticeForm.getType());
-        notice.setTarget(addNoticeForm.getTargetId());
-        notice.setContent(addNoticeForm.getContent());
+        notice.setType(addUpdateNoticeForm.getType());
+        notice.setTarget(addUpdateNoticeForm.getTargetId());
+        notice.setContent(addUpdateNoticeForm.getContent());
         return noticeMapper.updateById(notice);
     }
 

@@ -14,6 +14,8 @@ public interface MessageService extends IService<Message> {
 
     List<Message> getMessageListByWorkerId(Long workerId);
 
+    List<Message> getUnreadMessageList(Long workerId);
+
     int addMessage(Message message);
 
     int deleteMessage(Long id);

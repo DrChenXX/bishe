@@ -3,7 +3,7 @@ package com.example.bishe.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.bishe.mapper.ColWorkMapper;
-import com.example.bishe.model.dto.AddColForm;
+import com.example.bishe.model.dto.AddUpdateColForm;
 import com.example.bishe.model.dto.RejectColForm;
 import com.example.bishe.model.entity.ColWork;
 import com.example.bishe.model.entity.SingleCol;
@@ -50,17 +50,17 @@ public class SingleColServiceImpl extends ServiceImpl<SingleColMapper, SingleCol
     }
 
     @Override
-    public int addSingleCol(AddColForm addColForm) {
+    public int addSingleCol(AddUpdateColForm addUpdateColForm) {
         SingleCol singleCol = new SingleCol();
-        singleCol.setWorkerId(Long.valueOf(addColForm.getWorkerId()));
-        singleCol.setWorkId(Long.valueOf(addColForm.getWorkId()));
-        singleCol.setPicId(Long.valueOf(addColForm.getPicId()));
-        singleCol.setAge(Integer.valueOf(addColForm.getAge()));
-        singleCol.setCircum(Integer.valueOf(addColForm.getCircum()));
-        singleCol.setTowards(addColForm.getTowards());
-        singleCol.setTime(addColForm.getTime());
-        singleCol.setWeather(addColForm.getWeather());
-        singleCol.setLocation(addColForm.getLocation());
+        singleCol.setWorkerId(Long.valueOf(addUpdateColForm.getWorkerId()));
+        singleCol.setWorkId(Long.valueOf(addUpdateColForm.getWorkId()));
+        singleCol.setPicId(Long.valueOf(addUpdateColForm.getPicId()));
+        singleCol.setAge(Integer.valueOf(addUpdateColForm.getAge()));
+        singleCol.setCircum(Integer.valueOf(addUpdateColForm.getCircum()));
+        singleCol.setTowards(addUpdateColForm.getTowards());
+        singleCol.setTime(addUpdateColForm.getTime());
+        singleCol.setWeather(addUpdateColForm.getWeather());
+        singleCol.setLocation(addUpdateColForm.getLocation());
         singleCol.setState(0);
         return singleColMapper.insert(singleCol);
     }

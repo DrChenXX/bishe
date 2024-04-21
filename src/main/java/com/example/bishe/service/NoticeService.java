@@ -1,6 +1,6 @@
 package com.example.bishe.service;
 
-import com.example.bishe.model.dto.AddNoticeForm;
+import com.example.bishe.model.dto.AddUpdateNoticeForm;
 import com.example.bishe.model.entity.Notice;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,11 +13,11 @@ import java.util.List;
 public interface NoticeService extends IService<Notice> {
     List<Notice> getNoticeList();
 
-    int addNotice(AddNoticeForm addNoticeForm);
+    int addNotice(AddUpdateNoticeForm addUpdateNoticeForm);
 
     int deleteNotice(Long id);
 
-    int updateNotice(Long id, AddNoticeForm addNoticeForm);
+    int updateNotice(Long id, AddUpdateNoticeForm addUpdateNoticeForm);
 
     Notice getNoticeById(Long id);
 

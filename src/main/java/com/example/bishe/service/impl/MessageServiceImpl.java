@@ -36,6 +36,14 @@ public class MessageServiceImpl extends ServiceImpl<MessageMapper, Message>
     }
 
     @Override
+    public List<Message> getUnreadMessageList(Long workerId) {
+        LambdaQueryWrapper<Message> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(Message::getWorkerId, workerId);
+        queryWrapper.eq(Message::getRead, "0");
+        return messageMapper.selectList(queryWrapper);
+    }
+
+    @Override
     public int addMessage(Message message) {
         return messageMapper.insert(message);
     }
